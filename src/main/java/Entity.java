@@ -1,9 +1,6 @@
-//import java.util.ArrayList;
-
 public abstract class Entity {
     private String name;
     private Place location;
-//    private ArrayList<Status> statuses = new ArrayList<>();
 
     public Entity(){}
 
@@ -15,21 +12,6 @@ public abstract class Entity {
         this.name = name;
         this.location = location;
     }
-
-//    public Entity(String name, Status ... statuses){
-//        this.name = name;
-//        for(Status status : statuses){
-//            this.statuses.add(status);
-//        }
-//    }
-
-//    public Entity(String name, Place location, Status ... statuses){
-//        this.name = name;
-//        this.location = location;
-//        for(Status status : statuses){
-//            this.statuses.add(status);
-//        }
-//    }
 
     public String getName(){
         return name;
@@ -47,11 +29,6 @@ public abstract class Entity {
         this.location = location;
     }
 
-//    public void addStatus(Status ... statuses){
-//        for(Status status : statuses){
-//            this.statuses.add(status);
-//        }
-//    }
 
     @Override
     public String toString(){

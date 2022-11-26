@@ -1,3 +1,3 @@
 public interface IAbleToGo {
-    void go(Place location, ToDo toDo);
+    void go(Place location);
 }

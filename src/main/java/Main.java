@@ -12,19 +12,17 @@ public class Main {
         hotel.setRoom(room);
         room.setRoomCost(50);
         hotel.setCurrency(santik);
-        hotel.setAbstractTenants(new Tenants());
 
         Hotel hotel2 = new Hotel();
         Room room2 = new Room();
         hotel2.setRoom(room2);
         room2.setRoomCost(95);
 
-        they.go(hotel, ToDo.SPEND_NIGHT);
+        hotel.arrive(they);
+        System.out.println(traveler1.getLocation());
         hotel.famous(Status.CHEAPNESS);
 
-        hotel.getHotelRoom(OverTime.OVERNIGHT, Status.CONVENIENT);
+        hotel.getHotelRoom(TimeExpression.OVERNIGHT, Status.CONVENIENT);
         hotel.comparisonRoomCost(hotel, hotel2);
-
-        hotel.noExperience(Status.FLAW);
     }
 }

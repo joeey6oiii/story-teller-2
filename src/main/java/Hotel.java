@@ -1,8 +1,8 @@
-public class Hotel extends Place implements ForHotel, IDoNotExperience, ICanBeFamous{
+import java.util.Arrays;
+
+public class Hotel extends Place implements IHotelInfo, ICanBeFamous, IAbleArrive{
     private Room room;
     private Currency currency;
-    private Tenants abtenants;
-    private String notification;
 
     public Hotel(){
         super.setName("Любая другая гостиница");
@@ -39,45 +39,39 @@ public class Hotel extends Place implements ForHotel, IDoNotExperience, ICanBeFa
         this.room = room;
     }
 
-    public String getAbstractTenants(){
-        return abtenants.getName();
-    }
-
-    public void setAbstractTenants(Tenants tenants){
-        this.abtenants = tenants;
-    }
-
     public void famous(Status status){
-            System.out.println(this.getName() + " славилась " + Status.whatStatus(status));
+            System.out.println(this.getName() + " славилась " + status.getName());
     }
 
-    public void getHotelRoom(OverTime time, Status status) {
+    public void arrive(Entity ... entities){
+        System.out.println(Arrays.toString(entities) + " отправились ночевать в " + this.getName());
+        for (Entity entity : entities){
+            entity.setLocation(this);
+        }
+    }
+
+    public void getHotelRoom(TimeExpression time, Status status) {
         System.out.println("За " + room.getRoomCost() + " " +
                 getCurrency() + " в " + this.getName() +
-                " можно получить " + OverTime.whatOverTime(time) + " " +
-                Status.whatStatus(status) + " " + getRoom());
+                " можно получить " + time.getName() + " " +
+                status.getName() + " " + getRoom());
     }
 
     public void comparisonRoomCost(Hotel hotel1, Hotel hotel2){
         if(hotel1.room.getRoomCost() == hotel2.room.getRoomCost()){
-            System.out.println("стоимости " + hotel1.room.getName() + " и "
+            System.out.println("стоимости " + hotel1.room.getName() + " в " + hotel1.getName() + " и "
                     + hotel2.room.getName() + " в " + hotel2.getName() + " не отличаются");
         }
         float cost_difference;
         if(hotel1.room.getRoomCost() > hotel2.room.getRoomCost()){
             cost_difference = hotel1.room.getRoomCost() / hotel2.room.getRoomCost();
-            System.out.println(hotel1.room.getName() + " в " + cost_difference +
+            System.out.println(hotel1.room.getName() + " в " + hotel1.getName() + " в " + cost_difference +
                     " раза дороже, чем в " + hotel2.getName());
         }
         else{
             cost_difference = hotel2.room.getRoomCost() / hotel1.room.getRoomCost();
-            System.out.println(hotel1.room.getName() + " в " + cost_difference +
+            System.out.println(hotel1.room.getName() + " в " + hotel1.getName() + " в " + cost_difference +
                     " раза дешевле, чем в " + hotel2.getName());
         }
-    }
-
-    public void noExperience(Status status){
-            System.out.println(this.getName() + " не испытывала " +
-                    Status.whatStatus(status) + " в " + getAbstractTenants());
     }
 }

@@ -1,15 +1,14 @@
 public enum Status {
-    CHEAPNESS,
-    CHEAPER,
-    FLAW,
-    CONVENIENT;
+    CHEAPNESS("дешевизна"),
+    FLAW("недостаток"),
+    CONVENIENT("удобный");
 
-    public static String whatStatus(Status status){
-        return switch(status){
-            case CHEAPNESS -> "дешевизна";
-            case CHEAPER -> "дешевле";
-            case FLAW -> "недостаток";
-            case CONVENIENT -> "удобный";
-        };
+    private final String status;
+    Status(String status) {
+        this.status = status;
+    }
+
+    public String getName() {
+        return this.status;
     }
 }

@@ -1,5 +1,6 @@
 public abstract class Place {
     private String name;
+    private Place location;
 
     public Place(){}
 
@@ -9,6 +10,10 @@ public abstract class Place {
 
     public String getName(){
         return name;
+    }
+
+    public Place getLocation(){
+        return this.location;
     }
 
     public void setName(String name){
