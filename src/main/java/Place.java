@@ -17,6 +17,6 @@ public abstract class Place {
 
     @Override
     public String toString(){
-        return getName();
+        return getClass().getName() + "[" + "name=" + this.name + "]";
     }
 }

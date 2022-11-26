@@ -47,21 +47,13 @@ public class Hotel extends Place implements ForHotel, IDoNotExperience, ICanBeFa
         this.abtenants = tenants;
     }
 
-    public String getNotification(){
-        return notification;
-    }
-
-    public void setNotification(String notification){
-        this.notification = "надпись: " + notification;
-    }
-
     public void famous(Status status){
-            System.out.println(this.toString() + " славилась " + Status.whatStatus(status));
+            System.out.println(this.getName() + " славилась " + Status.whatStatus(status));
     }
 
     public void getHotelRoom(OverTime time, Status status) {
         System.out.println("За " + room.getRoomCost() + " " +
-                getCurrency() + " в " + this.toString() +
+                getCurrency() + " в " + this.getName() +
                 " можно получить " + OverTime.whatOverTime(time) + " " +
                 Status.whatStatus(status) + " " + getRoom());
     }
@@ -85,7 +77,7 @@ public class Hotel extends Place implements ForHotel, IDoNotExperience, ICanBeFa
     }
 
     public void noExperience(Status status){
-            System.out.println(this.toString() + " не испытывала " +
+            System.out.println(this.getName() + " не испытывала " +
                     Status.whatStatus(status) + " в " + getAbstractTenants());
     }
 }

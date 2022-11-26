@@ -13,7 +13,6 @@ public class Main {
         room.setRoomCost(50);
         hotel.setCurrency(santik);
         hotel.setAbstractTenants(new Tenants());
-        hotel.setNotification("\"Самые дешевые номера на свете\"");
 
         Hotel hotel2 = new Hotel();
         Room room2 = new Room();
@@ -27,12 +26,5 @@ public class Main {
         hotel.comparisonRoomCost(hotel, hotel2);
 
         hotel.noExperience(Status.FLAW);
-
-        Human every = new Human("Каждый человек");
-
-        every.read(Where.SIGN, hotel.getNotification());
-        every.go(hotel, ToDo.NO_THINK);
-
-        room.setName("Комната");
     }
 }

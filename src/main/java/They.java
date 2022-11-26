@@ -16,8 +16,7 @@ public class They extends Entity implements IAbleToGo {
     }
 
     public void go(Place location, ToDo toDo){
-        System.out.println(this.toString() + " отправились" +
-                ToDo.whatToDo(toDo) + " в " + location.getName());
+        System.out.println(this.toString() + " отправились" + ToDo.whatToDo(toDo) + " в " + location.getName());
     }
 
     @Override

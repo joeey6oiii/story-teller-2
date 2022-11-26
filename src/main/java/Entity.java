@@ -55,11 +55,7 @@ public abstract class Entity {
 
     @Override
     public String toString(){
-        if(getLocation() == null){
-            return getName();
-        }
-        else {
-            return getName() + " находится в " + getLocation();
-        }
+        return getClass().getName() + "[" + "name=" + this.name +
+                ",location=" + this.location + "]";
     }
 }
