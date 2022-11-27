@@ -1,4 +1,5 @@
 public interface IHotelInfo {
-    void getHotelRoom(TimeExpression time, Status status);
-    void comparisonRoomCost(Hotel hotel1, Hotel hotel2);
+    void getHotelRoomInfo(TimeExpression time, Status status);
+    void comparisonRoomCost(Hotel hotel, Hotel ... hotels);
+    void lackOfInhabitants(Hotel hotel, Hotel ... hotels);
 }

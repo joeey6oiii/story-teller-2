@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class They extends Entity implements IAbleToGo {
+public class They extends Entity implements ICanFind {
     private ArrayList<Entity> people = new ArrayList<>();
 
     public They(Entity ... people){
@@ -15,9 +15,20 @@ public class They extends Entity implements IAbleToGo {
         }
     }
 
-    public void go(Place location){
-        System.out.println(this.toString() + " отправились в " + location.getName());
-        this.setLocation(location);
+    public void findPlace(Place location){
+        System.out.println(this.toString() + " нашли " + location.getName());
+    }
+
+    public void findItem(Item item){
+        System.out.println(this.toString() + " нашли " + item.getName());
+    }
+
+    @Override
+    public void setLocation(Place location){
+        super.setLocation(location);
+        for(Entity entity : people){
+            entity.setLocation(location);
+        }
     }
 
     @Override

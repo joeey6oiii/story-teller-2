@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+import java.util.Objects;
+
 public abstract class Entity {
     private String name;
     private Place location;
+    private ArrayList<Item> items = new ArrayList<>();
 
     public Entity(){}
 
@@ -29,6 +33,33 @@ public abstract class Entity {
         this.location = location;
     }
 
+    public ArrayList<Item> getItemsList(){
+        return items;
+    }
+
+    public void setItems(Item... items){
+        for(Item item : items){
+            this.items.add(item);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj) return true;
+
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+
+        Entity other = (Entity) obj;
+
+        return name.equals(other.name) && location.equals(other.location);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(name, location);
+    }
 
     @Override
     public String toString(){

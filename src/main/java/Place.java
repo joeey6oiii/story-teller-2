@@ -1,6 +1,7 @@
+import java.util.Objects;
+
 public abstract class Place {
     private String name;
-    private Place location;
 
     public Place(){}
 
@@ -12,12 +13,26 @@ public abstract class Place {
         return name;
     }
 
-    public Place getLocation(){
-        return this.location;
-    }
-
     public void setName(String name){
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj) return true;
+
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+
+        Place other = (Place) obj;
+
+        return Objects.equals(name, other.name);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(name);
     }
 
     @Override

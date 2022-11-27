@@ -1,3 +1,3 @@
-public interface IAbleToGo {
+public interface ICanGo {
     void go(Place location);
 }

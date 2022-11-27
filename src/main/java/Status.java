@@ -1,7 +1,10 @@
 public enum Status {
     CHEAPNESS("дешевизна"),
     FLAW("недостаток"),
-    CONVENIENT("удобный");
+    SMALL("маленькая"),
+    CLEAR("чистенькая"),
+    CONVENIENT("удобный"),
+    NO_STATUS("");
 
     private final String status;
     Status(String status) {

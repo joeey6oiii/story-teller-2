@@ -1,4 +1,7 @@
-public class Human extends Entity{
+import java.util.ArrayList;
+
+public class Human extends Entity {
+    private static ArrayList<Human> humans = new ArrayList<Human>();
 
     public Human(){
         super.setName("Человек");
@@ -10,5 +13,11 @@ public class Human extends Entity{
 
     public Human(String name, Place location){
         super(name, location);
+    }
+
+    public static void addHuman(Human ... human){
+        for(Human homosap : human){
+            humans.add(homosap);
+        }
     }
 }

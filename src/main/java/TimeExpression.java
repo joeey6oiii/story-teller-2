@@ -4,7 +4,8 @@ public enum TimeExpression {
     IN_THE_MORNING("на утро"),
     NOT_FOR_LONG("недолго"),
     RIGHT_NOW("в это время"),
-    FOR_THE_DAY("на день");
+    FOR_THE_DAY("на день"),
+    NO_TIME_EXPRESSION("");
 
     private final String time;
 
