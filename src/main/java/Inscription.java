@@ -1,4 +1,4 @@
-public class Inscription implements ICanBeRead {
+public class Inscription implements CanBeRead {
     private String scription;
 
     public Inscription(String scription) {

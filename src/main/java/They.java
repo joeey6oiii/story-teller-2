@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class They extends Entity implements ICanFind {
+public class They extends Entity implements CanFind {
     private ArrayList<Entity> people = new ArrayList<>();
 
     public They(Entity ... people){

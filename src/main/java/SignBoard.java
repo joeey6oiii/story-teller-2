@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class SignBoard implements ICanBeRead{
+public class SignBoard implements CanBeRead {
     private ArrayList<Inscription> scription = new ArrayList<>();
 
     public SignBoard(Inscription ... inscription) {

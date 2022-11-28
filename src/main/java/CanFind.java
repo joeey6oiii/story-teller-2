@@ -1,4 +1,4 @@
-public interface ICanFind {
+public interface CanFind {
     void findPlace(Place location);
     void findItem(Item item);
 }

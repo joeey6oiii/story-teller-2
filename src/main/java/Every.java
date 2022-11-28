@@ -1,11 +1,11 @@
-public class Every extends Entity implements ICanRead, ICanGo{
+public class Every extends Entity implements CanRead, CanGo {
     private boolean allRead = false;
 
     public Every(String name) {
         super(name);
     }
 
-    public void read(ICanBeRead readable) {
+    public void read(CanBeRead readable) {
         if(readable.toString().equals("\"Самые дешевые номера на свете\"")){
             allRead = true;
         }
@@ -13,9 +13,10 @@ public class Every extends Entity implements ICanRead, ICanGo{
             System.out.println(this.getName() + " читал " +
                     readable.getClass().getName() + ": " + readable.say());
         }
+        // Read another readable obj
         else{
             System.out.println(this.getName() + " читал " +
-                    readable.getClass().getName() + " невнимательно");
+                    readable.getClass().getName() + ": " + readable.say());
         }
     }
 
@@ -24,8 +25,9 @@ public class Every extends Entity implements ICanRead, ICanGo{
             System.out.println(this.getName() + " шел " +
                     Description.NO_BRAIN.getName() + " в " + location.getName());
             this.setLocation(location);
+            allRead = false;
         }
-        // Went into another location
+        // Went to another location
         else{
             System.out.println(this.getName() + " шел в " + location.getName());
             this.setLocation(location);

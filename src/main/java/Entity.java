@@ -43,6 +43,16 @@ public abstract class Entity {
         }
     }
 
+    public Item getItem(int index){
+        return this.items.get(index);
+    }
+
+    public void addItem(Item ... item) {
+        for(Item it : item){
+            this.items.add(it);
+        }
+    }
+
     @Override
     public boolean equals(Object obj)
     {

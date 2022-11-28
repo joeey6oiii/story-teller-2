@@ -1,13 +1,10 @@
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Hotel extends Place implements IHotelInfo, ICanBeFamous,
-        ICanTakeArrive {
+public class Hotel extends Place implements HotelInfo, CanBeFamous,
+        CanTakeArrive {
     private Room room;
-    private Currency currency;
-    private float RoomCost;
+    private Money money;
     private boolean lackOfInhabitants = true;
     private ArrayList<Room> rooms = new ArrayList<>();
     private ArrayList<SignBoard> signBoard = new ArrayList<>();
@@ -26,34 +23,26 @@ public class Hotel extends Place implements IHotelInfo, ICanBeFamous,
         this.room = room;
     }
 
-    public Hotel(String name, Room room, Currency currency){
+    public Hotel(String name, Room room, Money money){
         super(name);
         this.room = room;
-        this.currency = currency;
+        this.money = money;
     }
 
     public String getCurrencyName(){
-        return currency.getName();
+        return money.getName();
     }
 
-    public Currency getCurrency(){
-        return this.currency;
+    public Money getCurrency(){
+        return this.money;
     }
 
-    protected void setCurrency(Currency currency){
-        this.currency = currency;
+    protected void setCurrency(Money money){
+        this.money = money;
     }
 
     public String getRoomName(){
         return room.getName();
-    }
-
-    public float getRoomCost(){
-        return RoomCost;
-    }
-
-    public void setRoomCost(float RoomCost){
-        this.RoomCost = RoomCost;
     }
 
     public Room getRoom(){
@@ -142,7 +131,7 @@ public class Hotel extends Place implements IHotelInfo, ICanBeFamous,
     }
 
     public void getHotelRoomInfo(TimeExpression time, Status status) {
-        System.out.println("За " + this.getRoomCost() + " " +
+        System.out.println("За " + room.getRoomCost() + " " +
                 getCurrencyName() + " в " + this.getName() +
                 " можно получить " + time.getName() + " " +
                 status.getName() + " " + getRoomName());
@@ -156,7 +145,7 @@ public class Hotel extends Place implements IHotelInfo, ICanBeFamous,
         tempString = tempString.substring(0, tempString.length() - 2);
         float temp = 0;
         for(Hotel h : hotels){
-            temp += h.getRoomCost() / hotel.getRoomCost();
+            temp += h.room.getRoomCost() / hotel.room.getRoomCost();
             }
         temp = temp / hotels.length;
         System.out.println(hotel.room.getName() + " в " + hotel.getName() + " в " + temp +

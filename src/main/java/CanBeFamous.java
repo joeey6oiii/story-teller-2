@@ -1,3 +1,3 @@
-public interface ICanBeFamous {
+public interface CanBeFamous {
     void famous(Status status);
 }
