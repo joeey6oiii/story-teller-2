@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Room extends Place implements RoomInfo {
-    private float RoomCost = 0;
+    private long RoomCost = 0;
     private int id;
     private ArrayList<Item> items = new ArrayList<>();
 
@@ -18,11 +18,11 @@ public class Room extends Place implements RoomInfo {
         this.id = id;
     }
 
-    public float getRoomCost(){
+    public long getRoomCost(){
         return RoomCost;
     }
 
-    public void setRoomCost(float RoomCost){
+    public void setRoomCost(long RoomCost){
         this.RoomCost = RoomCost;
     }
 
@@ -31,7 +31,7 @@ public class Room extends Place implements RoomInfo {
     }
 
     public void getItems() {
-        System.out.println("В " + this.getName() + " были " + this.getToString());
+        System.out.println("В " + this.getName() + " были " + this.getItemsToString());
     }
 
     public void setItems(Item... items){
@@ -46,7 +46,7 @@ public class Room extends Place implements RoomInfo {
         }
     }
 
-    public String getToString(){
+    public String getItemsToString(){
         String temp = "";
         for(int i = 0; i < items.size() - 1; i++){
             temp += items.get(i).getName() + ", ";

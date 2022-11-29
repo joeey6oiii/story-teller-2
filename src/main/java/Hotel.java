@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Hotel extends Place implements HotelInfo, CanBeFamous,
         CanTakeArrive {
@@ -105,7 +104,7 @@ public class Hotel extends Place implements HotelInfo, CanBeFamous,
             temp = entities[0].getName() + " и " + entities[1].getName();
         }
         else{
-            for(int i = 0; i < entities.length -1; i++){
+            for(int i = 0; i < entities.length - 1; i++){
                 temp += entities[i].getName() + ", ";
             }
             temp = temp.substring(0, temp.length() - 2);

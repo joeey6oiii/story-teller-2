@@ -39,8 +39,22 @@ public abstract class Entity {
         }
     }
 
-    public Item getItem(int index){
-        return this.items.get(index);
+    public Item getItemUIN(int index){
+        return items.get(index);
+    }
+
+    public Item getItemUID(int id){
+        int index = 0;
+        for (Item it : items) {
+            if (it.getId() == id) {
+                index = items.indexOf(it);
+            }
+        }
+        return items.get(index);
+    }
+
+    public Item[] getItems(){
+        return this.items.toArray(new Item[this.items.size()]);
     }
 
     public void addItem(Item ... item) {
@@ -49,27 +63,32 @@ public abstract class Entity {
         }
     }
 
-    @Override
-    public String toString(){
-        return getClass().getName() + "[" + "name=" + this.name +
-                ",location=" + this.location + "]";
+    public void removeItem(Item ... items){
+        for(Item it : items){
+            this.items.remove(it);
+        }
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
-        if (this == obj) return true;
-
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-
-        Entity other = (Entity) obj;
-
-        return name.equals(other.name) && location.equals(other.location);
+    public String toString() {
+        return "Entity{" +
+                "name='" + name + '\'' +
+                ", location=" + location +
+                ", items=" + items +
+                '}';
     }
 
     @Override
-    public int hashCode()
-    {
-        return Objects.hash(name, location);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Entity entity = (Entity) o;
+        return Objects.equals(name, entity.name) &&
+                Objects.equals(location, entity.location) && Objects.equals(items, entity.items);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, location, items);
     }
 }

@@ -1,6 +1,8 @@
+import java.util.Objects;
+
 public class Money extends Item{
     private String name;
-    private int amount;
+    private long amount;
 
     public Money(){
         this.name = "Некоторая валюта";
@@ -10,8 +12,13 @@ public class Money extends Item{
         this.name = name;
     }
 
-    public Money(String name, int amount) {
+    public Money(String name, long amount) {
         this.name = name;
+        this.amount = amount;
+    }
+
+    public Money(String name, int id, long amount) {
+        super(name, id);
         this.amount = amount;
     }
 
@@ -19,7 +26,7 @@ public class Money extends Item{
         return name;
     }
 
-    public int getAmount(){
+    public long getAmount(){
         return amount;
     }
 
@@ -29,5 +36,35 @@ public class Money extends Item{
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public void addAmount(long amount) {
+        this.amount += amount;
+    }
+
+    public void removeAmount(long amount) {
+        this.amount -= amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Money{" +
+                "name='" + name + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Money money = (Money) o;
+        return amount == money.amount && Objects.equals(name, money.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), name, amount);
     }
 }

@@ -11,4 +11,5 @@ public class Human extends Entity {
     public Human(String name, Place location){
         super(name, location);
     }
+
 }
