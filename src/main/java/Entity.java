@@ -33,10 +33,6 @@ public abstract class Entity {
         this.location = location;
     }
 
-    public ArrayList<Item> getItemsList(){
-        return items;
-    }
-
     public void setItems(Item... items){
         for(Item item : items){
             this.items.add(item);
@@ -51,6 +47,12 @@ public abstract class Entity {
         for(Item it : item){
             this.items.add(it);
         }
+    }
+
+    @Override
+    public String toString(){
+        return getClass().getName() + "[" + "name=" + this.name +
+                ",location=" + this.location + "]";
     }
 
     @Override
@@ -69,11 +71,5 @@ public abstract class Entity {
     public int hashCode()
     {
         return Objects.hash(name, location);
-    }
-
-    @Override
-    public String toString(){
-        return getClass().getName() + "[" + "name=" + this.name +
-                ",location=" + this.location + "]";
     }
 }

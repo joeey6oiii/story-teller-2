@@ -1,9 +1,11 @@
 import java.util.ArrayList;
 
 public class SignBoard implements CanBeRead {
+    private int id;
     private ArrayList<Inscription> scription = new ArrayList<>();
 
-    public SignBoard(Inscription ... inscription) {
+    public SignBoard(int id, Inscription ... inscription) {
+        this.id = id;
         for(Inscription annotation : inscription){
             this.scription.add(annotation);
         }
@@ -15,16 +17,19 @@ public class SignBoard implements CanBeRead {
         }
     }
 
-    public Inscription getScription(int index){
-        return scription.get(index);
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String say(){
-        return this.toString();
+        return this.getToString();
     }
 
-    @Override
-    public String toString() {
+    public String getToString() {
         String temp = "";
         for(Inscription annotation : scription){
             temp += annotation.getName() + ", ";

@@ -18,6 +18,11 @@ public abstract class Place {
     }
 
     @Override
+    public String toString(){
+        return getClass().getName() + "[" + "name=" + this.name + "]";
+    }
+
+    @Override
     public boolean equals(Object obj)
     {
         if (this == obj) return true;
@@ -33,10 +38,5 @@ public abstract class Place {
     public int hashCode()
     {
         return Objects.hash(name);
-    }
-
-    @Override
-    public String toString(){
-        return getClass().getName() + "[" + "name=" + this.name + "]";
     }
 }

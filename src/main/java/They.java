@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class They extends Entity implements CanFind {
+public class They implements CanFind {
     private ArrayList<Entity> people = new ArrayList<>();
 
     public They(Entity ... people){
@@ -16,23 +16,18 @@ public class They extends Entity implements CanFind {
     }
 
     public void findPlace(Place location){
-        System.out.println(this.toString() + " нашли " + location.getName());
+        System.out.println(this.getNames() + " нашли " + location.getName());
     }
 
     public void findItem(Item item){
-        System.out.println(this.toString() + " нашли " + item.getName());
+        System.out.println(this.getNames() + " нашли " + item.getName());
     }
 
-    @Override
-    public void setLocation(Place location){
-        super.setLocation(location);
-        for(Entity entity : people){
-            entity.setLocation(location);
-        }
+    public Entity[] getEntities(){
+        return people.toArray(new Entity[people.size()]);
     }
 
-    @Override
-    public String toString(){
+    public String getNames(){
         switch(people.size()){
             case 0: return "TheyIsEmpty";
             case 1: return people.get(0).getName();
@@ -47,5 +42,14 @@ public class They extends Entity implements CanFind {
                 temp += " и " + people.get(people.size() - 1).getName();
                 return temp;
         }
+    }
+
+
+    // toString() without location
+    @Override
+    public String toString() {
+        return "They{" +
+                "people=" + people +
+                '}';
     }
 }

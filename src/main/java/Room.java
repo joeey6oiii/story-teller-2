@@ -31,7 +31,7 @@ public class Room extends Place implements RoomInfo {
     }
 
     public void getItems() {
-        System.out.println("В " + this.getName() + " были " + this.toString());
+        System.out.println("В " + this.getName() + " были " + this.getToString());
     }
 
     public void setItems(Item... items){
@@ -46,12 +46,7 @@ public class Room extends Place implements RoomInfo {
         }
     }
 
-    public ArrayList<Item> getItemsList(){
-        return items;
-    }
-
-    @Override
-    public String toString(){
+    public String getToString(){
         String temp = "";
         for(int i = 0; i < items.size() - 1; i++){
             temp += items.get(i).getName() + ", ";
