@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
-public class They implements CanFind, CanRead, CanGo, CanPayToGet {
+public class They implements CanFind, CanRead, CanGo,
+        CanPayToGet, CanTry, CanOpen {
     private ArrayList<Entity> people = new ArrayList<>();
 
     public They(Entity ... people){
@@ -21,12 +22,12 @@ public class They implements CanFind, CanRead, CanGo, CanPayToGet {
         }
     }
 
-    public void findPlace(Place location){
-        System.out.println(this.getNames() + " нашли " + location.getName());
+    public Entity[] getEntities(){
+        return people.toArray(new Entity[people.size()]);
     }
 
-    public void findItem(Item item){
-        System.out.println(this.getNames() + " нашли " + item.getName());
+    public void find(CanBeFind canBeFind){
+        System.out.println(this.getNames() + " нашли " + canBeFind.getName());
     }
 
     public void read(CanBeRead readable) {
@@ -46,9 +47,9 @@ public class They implements CanFind, CanRead, CanGo, CanPayToGet {
         long temp2;
         for(Entity entity : people){
             for(int i = 0; i < entity.getItems().length; i++){
-                if(entity.getItemUIN(i).getClass().equals(Money.class)){
-                    totalMoneyList.add((Money) entity.getItemUIN(i));
-                    entity.removeItem(entity.getItemUIN(i));
+                if(entity.getItemUsingIndex(i).getClass().equals(Money.class)){
+                    totalMoneyList.add((Money) entity.getItemUsingIndex(i));
+                    entity.removeItem(entity.getItemUsingIndex(i));
                 }
             }
         }
@@ -72,17 +73,43 @@ public class They implements CanFind, CanRead, CanGo, CanPayToGet {
         }
         else if(temp2 > 0 && temp2 % 2 != 0){
             temp2 = (temp2 - 1) / this.people.size();
-            for(Entity entity : this.people){
-                entity.addItem(new Money(temp, temp2));
+            for(int i = 1; i < this.people.size(); i++){
+                people.get(i).addItem(new Money(temp, temp2));
             }
-            double temp5 = Math.random() * (people.size() - 1);
-            int temp6 = (int) Math.round(temp5);
-            people.get(temp6).addItem(new Money(temp, 1));
+            people.get(0).addItem(new Money(temp,temp2 + 1));
         }
     }
 
-    public Entity[] getEntities(){
-        return people.toArray(new Entity[people.size()]);
+    public void tryAccess(Room room){
+        ArrayList<Key> keys = new ArrayList<>();
+        Place entplace = null;
+        boolean access = false;
+        for(Entity entity : people) {
+            entplace = entity.getLocation();
+            for (int i = 0; i < entity.getItems().length; i++) {
+                if (entity.getItemUsingIndex(i).getClass().equals(Key.class)) {
+                    keys.add((Key) entity.getItemUsingIndex(i));
+                }
+            }
+        }
+        String temp = "";
+        for(int i = 0; i < keys.size(); i++){
+            if(keys.get(i).getId() == room.getId() && room.getRoomPlace() == entplace){
+                access = true;
+                temp += keys.get(i);
+            }
+        }
+        if(access){
+            System.out.println(this.getNames() + " очутились в " + room.getName() +
+                    " " + room.getId() + ", использовав: " + temp);
+            for(Entity entity : people) {
+                entity.setLocation(room);
+            }
+        }
+    }
+
+    public void open(CanBeOpened canBeOpened){
+        System.out.println(this.getNames() + " открыли " + canBeOpened.getName());
     }
 
     public String getNames(){

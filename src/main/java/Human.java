@@ -1,4 +1,4 @@
-public class Human extends Entity {
+public class Human extends Entity implements CanPut {
 
     public Human(){
         super.setName("Человек");
@@ -12,4 +12,8 @@ public class Human extends Entity {
         super(name, location);
     }
 
+    public void put(CanBePut canBePut, CanTakePut canTakePut) {
+        System.out.println(this.getName() + " положил " + canBePut.getName()
+                + " на: " + canTakePut.getName());
+    }
 }

@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class SignBoard extends Item implements CanBeRead {
+    private int id;
     private ArrayList<Inscription> scription = new ArrayList<>();
 
     public SignBoard(String name, int id, Inscription ... inscription) {
-        super(name, id);
+        super(name);
+        this.id = id;
         for(Inscription annotation : inscription){
             this.scription.add(annotation);
         }
@@ -14,6 +17,10 @@ public class SignBoard extends Item implements CanBeRead {
         for(Inscription annotation : inscription){
             this.scription.add(annotation);
         }
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String say(){
@@ -27,5 +34,27 @@ public class SignBoard extends Item implements CanBeRead {
         }
         temp = temp.substring(0, temp.length() - 2);
         return temp;
+    }
+
+    @Override
+    public String toString() {
+        return "SignBoard{" +
+                "id=" + id +
+                ", scription=" + scription +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        SignBoard signBoard = (SignBoard) o;
+        return id == signBoard.id && Objects.equals(scription, signBoard.scription);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), id, scription);
     }
 }

@@ -8,15 +8,19 @@ public class Main {
         Human human3 = new Human("Человек 3");
         They humans = new They(human1, human2, human3);
 
-        traveler1.setItems(new Money("Сантик", 41), new Hat("Шляпа", 1));
-        traveler2.setItems(new Money("Сантик", 40), new Hat("Шляпа", 2));
+        Hat hatTraveler1 = new Hat("Шляпа");
+        Hat hatTraveler2 = new Hat("Шляпа");
+
+        traveler1.setItems(new Money("Сантик", 40), hatTraveler1);
+        traveler2.setItems(new Money("Сантик", 40), hatTraveler2);
 
         Hotel hotel = new Hotel("Гостиница \"Экономическая\"");
         Room room = new Room("Номер", 1);
         room.setRoomCost(50);
-        room.setItems(new Table("Стол", 3), new Chair("Стулья"),
-                new Cabinet("Платяной шкаф", 5), new WaterDispenser("Рукомойник", 6),
-                new Mirror("Зеркало", 7), new Televisor("Телевизор", 6));
+        Cabinet cabinet = new Cabinet("Платяной шкаф");
+        room.setItems(new Table("Стол"), new Chair("Стулья"),
+                cabinet, new WaterDispenser("Рукомойник"),
+                new Mirror("Зеркало"), new Televisor("Телевизор"));
         hotel.setRooms(room);
         hotel.setCurrency(new Money("Сантик"));
         hotel.setTenants(new Human("Житель 1"), new Human("Житель 2"),
@@ -28,7 +32,7 @@ public class Main {
         hotel2.setRooms(room2);
         hotel2.addTenants(new Human("1"), new Human("2"),
                 new Human("3"), new Human("4"));
-        hotel.setSignBoard(new SignBoard("Вывеска", 8,
+        hotel.setSignBoard(new SignBoard("Вывеска", 7,
                 new Inscription("\"Самые дешевые номера на свете\"")));
 
         Hotel hotel3 = new Hotel("другая гостиница 2");
@@ -45,16 +49,22 @@ public class Main {
 
         hotel.lackOfInhabitants(hotel, hotel2, hotel3);
 
-        humans.read(hotel.getSignBoard(8));
+        humans.read(hotel.getSignBoard(7));
         humans.go(hotel);
 
-        they.payToGet(new Key("Ключ", room.getId(), room.getRoomCost()));
+        they.payToGet(new Key("Ключ", room.getRoomCost(), room.getId()));
 
-        they.findPlace(hotel.getRoom(1));
+        they.find(hotel.getRoom(1));
+        they.tryAccess(room);
+
         room.setName("Комната");
-
         room.getItems();
 
-        room.addItems(new Shelf("полочка", 9));
+        they.open(cabinet);
+        Shelf shelf = new Shelf("полочка");
+        room.addItems(shelf);
+        traveler1.put(hatTraveler1, shelf);
+        traveler2.put(hatTraveler2, shelf);
+
     }
 }

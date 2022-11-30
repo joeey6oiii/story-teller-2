@@ -1,4 +1,4 @@
-public class Cabinet extends Item {
+public class Cabinet extends Item implements CanBeOpened {
     public Cabinet(String name) {
         super(name);
     }

@@ -1,8 +1,8 @@
 import java.util.Objects;
 
-public abstract class Item {
+public abstract class Item implements CanBeFind {
     private String name;
-    private int id;
+//    private int id;
     private long cost;
 
     public Item(){}
@@ -11,14 +11,14 @@ public abstract class Item {
         this.name = name;
     }
 
-    public Item(String name, int id) {
-        this.name = name;
-        this.id = id;
-    }
+//    public Item(String name, int id) {
+//        this.name = name;
+//        this.id = id;
+//    }
 
-    public Item(String name, int id, long cost) {
+    public Item(String name, long cost) {
         this.name = name;
-        this.id = id;
+//        this.id = id;
         this.cost = cost;
     }
 
@@ -30,9 +30,9 @@ public abstract class Item {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
-    }
+//    public int getId() {
+//        return id;
+//    }
 
     public long getCost() {
         return cost;
@@ -46,7 +46,6 @@ public abstract class Item {
     public String toString() {
         return "Item{" +
                 "name='" + name + '\'' +
-                ", id=" + id +
                 ", cost=" + cost +
                 '}';
     }
@@ -56,11 +55,11 @@ public abstract class Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return id == item.id && Objects.equals(name, item.name);
+        return cost == item.cost && Objects.equals(name, item.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, id);
+        return Objects.hash(name, cost);
     }
 }

@@ -56,6 +56,7 @@ public class Hotel extends Place implements HotelInfo, CanBeFamous,
     public void setRooms(Room... rooms) {
         for (Room room : rooms) {
             this.rooms.add(room);
+            room.setRoomPlace(this);
         }
     }
 
@@ -147,12 +148,11 @@ public class Hotel extends Place implements HotelInfo, CanBeFamous,
         }
         temp = temp.substring(0, temp.length() - 2);
         for (int j = 0; j < rooms.size(); j++) {
-            temp2 += rooms.get(j).getName() + " " +
-                    rooms.get(j).getId() + ", ";
+            temp2 += rooms.get(j).getName() + ", ";
         }
         temp2 = temp2.substring(0, temp2.length() - 2);
         System.out.println("В " + this.getName() + " можно получить "
-                + temp2 + " за " + temp + " " + getCurrencyName() + " соответственно");
+                + temp2 + " за " + temp + " " + getCurrencyName());
     }
 
     public void comparisonRoomCost(Hotel hotel, Hotel... hotels) {
@@ -164,7 +164,7 @@ public class Hotel extends Place implements HotelInfo, CanBeFamous,
             tempString += h.getName() + ", ";
         }
         for(int g = 0; g < hotel.rooms.size(); g++) {
-            tempString2 += rooms.get(g).getName() + " " + hotel.rooms.get(g).getId() +", ";
+            tempString2 += rooms.get(g).getName() + ", ";
         }
         tempString = tempString.substring(0, tempString.length() - 2);
         tempString2 = tempString2.substring(0, tempString2.length() - 2);

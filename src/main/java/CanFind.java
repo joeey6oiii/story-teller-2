@@ -1,4 +1,3 @@
 public interface CanFind {
-    void findPlace(Place location);
-    void findItem(Item item);
+    void find(CanBeFind canBeFind);
 }

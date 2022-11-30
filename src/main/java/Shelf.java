@@ -1,4 +1,4 @@
-public class Shelf extends Item {
+public class Shelf extends Item implements CanTakePut {
     public Shelf(String name) {
         super(name);
     }

@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public abstract class Place {
+public abstract class Place implements CanBeFind {
     private String name;
 
     public Place(){}

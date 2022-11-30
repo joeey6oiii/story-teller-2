@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Room extends Place implements RoomInfo {
     private long RoomCost = 0;
     private int id;
+    private Place location;
     private ArrayList<Item> items = new ArrayList<>();
 
     public Room(){
@@ -32,6 +33,14 @@ public class Room extends Place implements RoomInfo {
 
     public void getItems() {
         System.out.println("В " + this.getName() + " были " + this.getItemsToString());
+    }
+
+    public Place getRoomPlace() {
+        return location;
+    }
+
+    public void setRoomPlace(Place location) {
+        this.location = location;
     }
 
     public void setItems(Item... items){

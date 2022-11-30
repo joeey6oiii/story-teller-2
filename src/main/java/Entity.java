@@ -39,19 +39,19 @@ public abstract class Entity {
         }
     }
 
-    public Item getItemUIN(int index){
+    public Item getItemUsingIndex(int index){
         return items.get(index);
     }
 
-    public Item getItemUID(int id){
-        int index = 0;
-        for (Item it : items) {
-            if (it.getId() == id) {
-                index = items.indexOf(it);
-            }
-        }
-        return items.get(index);
-    }
+//    public Item getItemUsingId(int id){
+//        int index = 0;
+//        for (Item it : items) {
+//            if (it.getId() == id) {
+//                index = items.indexOf(it);
+//            }
+//        }
+//        return items.get(index);
+//    }
 
     public Item[] getItems(){
         return this.items.toArray(new Item[this.items.size()]);
