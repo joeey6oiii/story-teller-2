@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Hotel extends Place implements HotelInfo, CanBeFamous,
+public class Hotel extends Place implements Revisorable, CanBeFamous,
         CanTakeArrive {
     private Money money;
     private boolean lackOfInhabitants = true;
@@ -39,7 +39,7 @@ public class Hotel extends Place implements HotelInfo, CanBeFamous,
         return this.money;
     }
 
-    protected void setCurrency(Money money) {
+    public void setCurrency(Money money) {
         this.money = money;
     }
 
@@ -148,7 +148,7 @@ public class Hotel extends Place implements HotelInfo, CanBeFamous,
         }
         temp = temp.substring(0, temp.length() - 2);
         for (int j = 0; j < rooms.size(); j++) {
-            temp2 += rooms.get(j).getName() + ", ";
+            temp2 += rooms.get(j).getName() + " " + rooms.get(j).getId() + ", ";
         }
         temp2 = temp2.substring(0, temp2.length() - 2);
         System.out.println("В " + this.getName() + " можно получить "
@@ -164,20 +164,21 @@ public class Hotel extends Place implements HotelInfo, CanBeFamous,
             tempString += h.getName() + ", ";
         }
         for(int g = 0; g < hotel.rooms.size(); g++) {
-            tempString2 += rooms.get(g).getName() + ", ";
+            tempString2 += rooms.get(g).getName() + " " + rooms.get(g).getId() + ", ";
         }
         tempString = tempString.substring(0, tempString.length() - 2);
         tempString2 = tempString2.substring(0, tempString2.length() - 2);
         for (int i = 0; i < hotel.rooms.size(); i++) {
-            temp1 += hotel.rooms.get(i).getRoomCost();
+            temp1 += (float) hotel.rooms.get(i).getRoomCost() / hotel.rooms.size();
         }
         for (Hotel h : hotels) {
             for (int j = 0; j < h.rooms.size(); j++) {
-                temp2 += h.rooms.get(j).getRoomCost() / temp1;
+                temp2 += (float) h.rooms.get(j).getRoomCost() / h.rooms.size();
             }
         }
         temp2 = temp2 / hotels.length;
-        System.out.println(tempString2 + " в " + hotel.getName() + " в среднем в " + temp2 +
+        temp1 = temp2 / temp1;
+        System.out.println(tempString2 + " в " + hotel.getName() + " в среднем в " + temp1 +
                 " раз дешевле, чем в " + tempString);
     }
 }

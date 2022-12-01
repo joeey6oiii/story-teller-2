@@ -1,4 +1,4 @@
-public class Kozlik extends Human{
+public class Kozlik extends Human {
     public Kozlik(String name){
         super(name);
     }

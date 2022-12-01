@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
-public class They implements CanFind, CanRead, CanGo,
-        CanPayToGet, CanTry, CanOpen {
+public class They implements TryAble, FindAble, GoAble,
+        OpenAble, ReadAble, PayToGetAble {
     private ArrayList<Entity> people = new ArrayList<>();
 
     public They(Entity ... people){
@@ -27,17 +27,42 @@ public class They implements CanFind, CanRead, CanGo,
     }
 
     public void find(CanBeFind canBeFind){
-        System.out.println(this.getNames() + " нашли " + canBeFind.getName());
+        int keys = 0;
+        if(canBeFind.getClass().equals(Room.class)){
+            for(Entity entity : people){
+                for(int i = 0; i < entity.getItems().length; i++){
+                    if(entity.getItemUsingIndex(i).getClass().equals(Key.class)) {
+                        keys += 1;
+                    }
+                }
+            }
+            if(keys == 0){
+                System.out.println(this.getNames() + " нашли случайный " + canBeFind.getName());
+            }
+            else{
+                System.out.println(this.getNames() + " нашли " + canBeFind.getName());
+            }
+        }
     }
 
     public void read(CanBeRead readable) {
-        System.out.println(this.getNames() + " читали " +
-                readable.getClass().getName() + ": " + readable.say());
+        if(this.people.size() == 0){
+            System.out.println("Никто не читал " + readable.getClass().getName() + ": " + readable.say());
+        }
+        else{
+            System.out.println(this.getNames() + " читали " +
+                    readable.getClass().getName() + ": " + readable.say());
+        }
     }
 
     public void go(Place location) {
-        System.out.println(this.getNames() + " шли в " + location.getName());
-        this.setLocation(location);
+        if(this.people.size() == 0) {
+            System.out.println("Никто не шел в " + location.getName());
+        }
+        else{
+            System.out.println(this.getNames() + " шли в " + location.getName());
+            this.setLocation(location);
+        }
     }
 
     public void payToGet(Item item) {
@@ -57,26 +82,33 @@ public class They implements CanFind, CanRead, CanGo,
             totalMoney += totalMoneyList.get(i).getAmount();
         }
         temp = totalMoneyList.get(0).getName();
-        if(totalMoney >= item.getCost()){
-            System.out.println(this.getNames() + " заплатили " + item.getCost() +
-                    " " + temp + " и получили " + item.getName());
+        if(totalMoney < item.getCost()){
+            long temp3 = item.getCost() - totalMoney;
+            System.out.println(this.getNames() + " не удалось купить " +
+                    item.getName() +  " за " + totalMoney + " " + temp +
+                    ". Не хватает: " + temp3 + " " + temp);
+        }
+        else{
             double temp3 = Math.random() * (people.size() - 1);
-            int temp4 = (int) Math.round(temp3);
+            int temp4 = (int) (Math.round(temp3));
             people.get(temp4).addItem(item);
-        }
-        temp2 = totalMoney - item.getCost();
-        if(temp2 > 0 && temp2 % 2 == 0){
-            temp2 = temp2 / this.people.size();
-            for(Entity entity : this.people){
-                entity.addItem(new Money(temp, temp2));
+            System.out.println(this.getNames() + " заплатили " + item.getCost() +
+                    " " + temp + " и получили " + item.getName() + ". "
+                    + item.getName() + " выдан: " + people.get(temp4).getName());
+            temp2 = totalMoney - item.getCost();
+            if(temp2 > 0 && temp2 % this.people.size() == 0) {
+                temp2 = temp2 / this.people.size();
+                for (Entity entity : this.people) {
+                    entity.addItem(new Money(temp, temp2));
+                }
             }
-        }
-        else if(temp2 > 0 && temp2 % 2 != 0){
-            temp2 = (temp2 - 1) / this.people.size();
-            for(int i = 1; i < this.people.size(); i++){
-                people.get(i).addItem(new Money(temp, temp2));
+            else if(temp2 > 0 && temp2 % this.people.size() != 0){
+                temp2 = (temp2 - 1) / this.people.size();
+                for(int i = 1; i < this.people.size(); i++){
+                    people.get(i).addItem(new Money(temp, temp2));
+                }
+                people.get(0).addItem(new Money(temp,temp2 + 1));
             }
-            people.get(0).addItem(new Money(temp,temp2 + 1));
         }
     }
 
@@ -84,11 +116,13 @@ public class They implements CanFind, CanRead, CanGo,
         ArrayList<Key> keys = new ArrayList<>();
         Place entplace = null;
         boolean access = false;
+        String temp0 = "";
         for(Entity entity : people) {
             entplace = entity.getLocation();
             for (int i = 0; i < entity.getItems().length; i++) {
                 if (entity.getItemUsingIndex(i).getClass().equals(Key.class)) {
                     keys.add((Key) entity.getItemUsingIndex(i));
+                    temp0 += entity.getName();
                 }
             }
         }
@@ -100,16 +134,23 @@ public class They implements CanFind, CanRead, CanGo,
             }
         }
         if(access){
-            System.out.println(this.getNames() + " очутились в " + room.getName() +
-                    " " + room.getId() + ", использовав: " + temp);
+            System.out.println(temp0 + " использовал: " + temp
+                    + ". " + this.getNames() + " очутились в "
+                    + room.getName() + " " + room.getId());
             for(Entity entity : people) {
                 entity.setLocation(room);
             }
         }
+        else{
+            System.out.println(this.getNames() + " не удалось попасть в "
+                    + room.getName() + " " + room.getId() + ". Отсутствует: " +
+                    Key.class.getName() + " " + room.getId());
+            System.exit(0);
+        }
     }
 
     public void open(CanBeOpened canBeOpened){
-        System.out.println(this.getNames() + " открыли " + canBeOpened.getName());
+        System.out.println(this.getNames() + " открыли: " + canBeOpened.getName());
     }
 
     public String getNames(){

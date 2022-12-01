@@ -43,27 +43,17 @@ public abstract class Entity {
         return items.get(index);
     }
 
-//    public Item getItemUsingId(int id){
-//        int index = 0;
-//        for (Item it : items) {
-//            if (it.getId() == id) {
-//                index = items.indexOf(it);
-//            }
-//        }
-//        return items.get(index);
-//    }
-
     public Item[] getItems(){
         return this.items.toArray(new Item[this.items.size()]);
     }
 
-    public void addItem(Item ... item) {
+    public void addItem(Item... item) {
         for(Item it : item){
             this.items.add(it);
         }
     }
 
-    public void removeItem(Item ... items){
+    public void removeItem(Item... items){
         for(Item it : items){
             this.items.remove(it);
         }

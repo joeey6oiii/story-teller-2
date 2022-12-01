@@ -2,7 +2,6 @@ import java.util.Objects;
 
 public abstract class Item implements CanBeFind {
     private String name;
-//    private int id;
     private long cost;
 
     public Item(){}
@@ -10,11 +9,6 @@ public abstract class Item implements CanBeFind {
     public Item(String name) {
         this.name = name;
     }
-
-//    public Item(String name, int id) {
-//        this.name = name;
-//        this.id = id;
-//    }
 
     public Item(String name, long cost) {
         this.name = name;
@@ -29,10 +23,6 @@ public abstract class Item implements CanBeFind {
     public void setName(String name) {
         this.name = name;
     }
-
-//    public int getId() {
-//        return id;
-//    }
 
     public long getCost() {
         return cost;

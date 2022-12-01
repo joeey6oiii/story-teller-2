@@ -1,3 +1,3 @@
-public interface CanRead {
+public interface ReadAble {
     void read(CanBeRead readable);
 }

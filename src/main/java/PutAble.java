@@ -1,3 +1,3 @@
-public interface CanPut {
+public interface PutAble {
     void put(CanBePut canBePut, CanTakePut canTakePut);
 }

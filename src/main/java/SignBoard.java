@@ -5,7 +5,7 @@ public class SignBoard extends Item implements CanBeRead {
     private int id;
     private ArrayList<Inscription> scription = new ArrayList<>();
 
-    public SignBoard(String name, int id, Inscription ... inscription) {
+    public SignBoard(String name, int id, Inscription... inscription) {
         super(name);
         this.id = id;
         for(Inscription annotation : inscription){
@@ -13,7 +13,7 @@ public class SignBoard extends Item implements CanBeRead {
         }
     }
 
-    public void setInscription(Inscription ... inscription) {
+    public void setInscription(Inscription... inscription) {
         for(Inscription annotation : inscription){
             this.scription.add(annotation);
         }

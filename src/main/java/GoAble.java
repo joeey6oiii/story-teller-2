@@ -1,3 +1,3 @@
-public interface CanGo {
+public interface GoAble {
     void go(Place location);
 }

@@ -1,3 +1,3 @@
-public interface CanPayToGet {
+public interface PayToGetAble {
     void payToGet(Item item);
 }

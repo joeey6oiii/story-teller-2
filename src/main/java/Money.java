@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Money extends Item{
+public class Money extends Item {
     private String name;
     private long amount;
 

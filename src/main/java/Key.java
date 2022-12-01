@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Key extends Item{
+public class Key extends Item {
     private int id;
 
     public Key(String name, long cost, int id){

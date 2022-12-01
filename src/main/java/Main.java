@@ -3,43 +3,63 @@ public class Main {
         Human traveler1 = new Neznayka("Незнайка");
         Human traveler2 = new Kozlik("Козлик");
         They they = new They(traveler1, traveler2);
-        Human human1 = new Human("Человек 1");
-        Human human2 = new Human("Человек 2");
-        Human human3 = new Human("Человек 3");
-        They humans = new They(human1, human2, human3);
+        They humans = new They();
+        for(int i = 0; i < Math.round((Math.random() * 5)); i++){
+            Human human = new Human();
+            humans.addPeople(human);
+        }
 
         Hat hatTraveler1 = new Hat("Шляпа");
         Hat hatTraveler2 = new Hat("Шляпа");
 
-        traveler1.setItems(new Money("Сантик", 40), hatTraveler1);
-        traveler2.setItems(new Money("Сантик", 40), hatTraveler2);
+        traveler1.setItems(new Money("Сантик",
+                Math.round((Math.random() * 35 + 20))), hatTraveler1);
+        traveler2.setItems(new Money("Сантик",
+                 Math.round((Math.random() * 35 + 10))), hatTraveler2);
 
         Hotel hotel = new Hotel("Гостиница \"Экономическая\"");
         Room room = new Room("Номер", 1);
-        room.setRoomCost(50);
+        room.setRoomCost(Math.round(((Math.random() + 24) * 2)));
         Cabinet cabinet = new Cabinet("Платяной шкаф");
+        cabinet.setShelves(new Shelf("полочка"), new Shelf("полка"));
         room.setItems(new Table("Стол"), new Chair("Стулья"),
                 cabinet, new WaterDispenser("Рукомойник"),
                 new Mirror("Зеркало"), new Televisor("Телевизор"));
         hotel.setRooms(room);
+        for(int i = 0; i < Math.round((Math.random() * 5)); i++){
+            Room room1 = new Room("Номер", room.getId() + 1);
+            room1.setRoomCost((int) ((Math.random() + 49) * 1.06));
+            hotel.setRooms(room1);
+        }
+        for (int i = 0; i < Math.round((Math.random() * 5)); i++){
+            Human tenant = new Human();
+            hotel.addTenants(tenant);
+        }
         hotel.setCurrency(new Money("Сантик"));
-        hotel.setTenants(new Human("Житель 1"), new Human("Житель 2"),
-                new Human("Житель 3"));
-
-        Hotel hotel2 = new Hotel("другая гостиница 1");
-        Room room2 = new Room("Номер", 1);
-        room2.setRoomCost(95);
-        hotel2.setRooms(room2);
-        hotel2.addTenants(new Human("1"), new Human("2"),
-                new Human("3"), new Human("4"));
         hotel.setSignBoard(new SignBoard("Вывеска", 7,
                 new Inscription("\"Самые дешевые номера на свете\"")));
 
+        Hotel hotel2 = new Hotel("другая гостиница 1");
+        for(int i = 0; i < Math.round((Math.random() * 5)); i++){
+            Room room2 = new Room();
+            room2.setRoomCost(Math.round(((Math.random() + 85) * 1.162)));
+            hotel2.addRooms(room2);
+        }
+        for(int i = 0; i < Math.round((Math.random() * 3)); i++) {
+            Human tenant = new Human();
+            hotel2.addTenants(tenant);
+        }
+
         Hotel hotel3 = new Hotel("другая гостиница 2");
-        Room room3 = new Room("Номер", 1);
-        room3.setRoomCost(85);
-        hotel3.setRooms(room3);
-        hotel3.addTenants(new Human("житель 1"), new Human(" житель 2"));
+        for(int i = 0; i < Math.round((Math.random() * 5)); i++){
+            Room room3 = new Room();
+            room3.setRoomCost(Math.round(((Math.random() + 75) * 1.12)));
+            hotel3.addRooms(room3);
+        }
+        for(int i = 0; i < Math.round((Math.random() * 5)); i++) {
+            Human tenant = new Human();
+            hotel3.addTenants(tenant);
+        }
 
         hotel.takeArrive(they.getEntities());
         hotel.famous(Status.CHEAPNESS);
@@ -55,16 +75,13 @@ public class Main {
         they.payToGet(new Key("Ключ", room.getRoomCost(), room.getId()));
 
         they.find(hotel.getRoom(1));
-        they.tryAccess(room);
+        they.tryAccess(hotel.getRoom(1));
 
         room.setName("Комната");
         room.getItems();
 
         they.open(cabinet);
-        Shelf shelf = new Shelf("полочка");
-        room.addItems(shelf);
-        traveler1.put(hatTraveler1, shelf);
-        traveler2.put(hatTraveler2, shelf);
-
+        traveler1.put(hatTraveler1, cabinet.getShelf(0));
+        traveler2.put(hatTraveler2, cabinet.getShelf(0));
     }
 }
