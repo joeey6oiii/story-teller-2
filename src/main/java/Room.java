@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Room extends Place implements RoomInfo {
+public class Room extends Place implements RoomInfo, CanReplaceItems {
     private long RoomCost = 0;
     private int id;
     private Place location;
@@ -32,7 +32,7 @@ public class Room extends Place implements RoomInfo {
     }
 
     public void getItems() {
-        System.out.println("В " + this.getName() + " были " + this.getItemsToString());
+        System.out.println("В " + this.getName() + " были " + this.getItemsNames());
     }
 
     public Place getRoomPlace() {
@@ -55,7 +55,26 @@ public class Room extends Place implements RoomInfo {
         }
     }
 
-    public String getItemsToString(){
+    public void replaceItem(CanBeReplaced itemToReplace, CanBeReplaced itemForReplace) {
+        boolean notReplaced = true;
+        for(Item item : this.items) {
+            if (item.equals(itemToReplace)) {
+                if(notReplaced){
+                    items.remove(item);
+                    items.add((Item) itemForReplace);
+                    notReplaced = false;
+                    System.out.println("Вместо " + itemToReplace.getName() +
+                            " появился " + itemForReplace.getName());
+                }
+            }
+        }
+        if(notReplaced){
+            System.out.println("Не удалось заменить " + itemToReplace.getName() +
+                    " на " + itemForReplace.getName());
+        }
+    }
+
+    public String getItemsNames(){
         String temp = "";
         for(int i = 0; i < items.size() - 1; i++){
             temp += items.get(i).getName() + ", ";

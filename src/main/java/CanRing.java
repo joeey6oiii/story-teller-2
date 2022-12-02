@@ -1,3 +1,3 @@
 public interface CanRing {
-    void ring(CanRing canRing);
+    void ring(TimeExpression time);
 }

@@ -3,7 +3,7 @@ public enum TimeExpression {
     FOR_EVENING("на вечер"),
     IN_THE_MORNING("на утро"),
     NOT_FOR_LONG("недолго"),
-    RIGHT_NOW("в это время"),
+    RIGHT_NOW("В это время"),
     FOR_THE_DAY("на день"),
     NO_TIME_EXPRESSION("");
 

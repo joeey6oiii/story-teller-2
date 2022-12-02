@@ -21,13 +21,16 @@ public class Main {
         Room room = new Room("Номер", 1);
         room.setRoomCost(Math.round(((Math.random() + 24) * 2)));
         Cabinet cabinet = new Cabinet("Платяной шкаф");
+        Bell bell = new Bell("Звонок");
+        Peephole peephole = new Peephole("Глазок");
+        ElectricSwitch electricSwitch = new ElectricSwitch("Электрический выключатель");
         cabinet.setShelves(new Shelf("полочка"), new Shelf("полка"));
         room.setItems(new Table("Стол"), new Chair("Стулья"),
                 cabinet, new WaterDispenser("Рукомойник"),
-                new Mirror("Зеркало"), new Televisor("Телевизор"));
+                new Mirror("Зеркало"), new Televisor("Телевизор"), electricSwitch);
         hotel.setRooms(room);
-        for(int i = 0; i < Math.round((Math.random() * 5)); i++){
-            Room room1 = new Room("Номер", room.getId() + 1);
+        for(int i = room.getId() + 1; i < Math.round((Math.random() * 6)); i++){
+            Room room1 = new Room("Номер", i);
             room1.setRoomCost((int) ((Math.random() + 49) * 1.06));
             hotel.setRooms(room1);
         }
@@ -39,7 +42,7 @@ public class Main {
         hotel.setSignBoard(new SignBoard("Вывеска", 7,
                 new Inscription("\"Самые дешевые номера на свете\"")));
 
-        Hotel hotel2 = new Hotel("другая гостиница 1");
+        Hotel hotel2 = new Hotel("Другая гостиница 1");
         for(int i = 0; i < Math.round((Math.random() * 5)); i++){
             Room room2 = new Room();
             room2.setRoomCost(Math.round(((Math.random() + 85) * 1.162)));
@@ -50,13 +53,13 @@ public class Main {
             hotel2.addTenants(tenant);
         }
 
-        Hotel hotel3 = new Hotel("другая гостиница 2");
+        Hotel hotel3 = new Hotel("Другая гостиница 2");
         for(int i = 0; i < Math.round((Math.random() * 5)); i++){
             Room room3 = new Room();
             room3.setRoomCost(Math.round(((Math.random() + 75) * 1.12)));
             hotel3.addRooms(room3);
         }
-        for(int i = 0; i < Math.round((Math.random() * 5)); i++) {
+        for(int i = 0; i < Math.round((Math.random() * 6) - 1); i++) {
             Human tenant = new Human();
             hotel3.addTenants(tenant);
         }
@@ -83,5 +86,11 @@ public class Main {
         they.open(cabinet);
         traveler1.put(hatTraveler1, cabinet.getShelf(0));
         traveler2.put(hatTraveler2, cabinet.getShelf(0));
+        they.wantRest();
+
+        bell.ring(TimeExpression.RIGHT_NOW);
+
+        room.replaceItem(electricSwitch, peephole);
+        peephole.blink(Colors.RED);
     }
 }

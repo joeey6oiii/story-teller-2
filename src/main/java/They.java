@@ -150,7 +150,12 @@ public class They implements TryAble, FindAble, GoAble,
     }
 
     public void open(CanBeOpened canBeOpened){
-        System.out.println(this.getNames() + " открыли: " + canBeOpened.getName());
+        System.out.println(this.getNames() + " открыли " + canBeOpened.getName());
+        canBeOpened.setOpen(true);
+    }
+
+    public void wantRest(){
+        System.out.println(this.getNames() + " хотели отдохнуть");
     }
 
     public String getNames(){

@@ -3,7 +3,7 @@ public class Bell extends Item implements CanRing {
         super(name);
     }
 
-    public void ring(CanRing canRing) {
-
+    public void ring(TimeExpression time) {
+        System.out.println(time.getName() + " зазвенел " + this.getName());
     }
 }

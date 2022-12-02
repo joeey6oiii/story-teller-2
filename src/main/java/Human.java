@@ -14,7 +14,7 @@ public class Human extends Entity {
 
     public void put(CanBePut canBePut, CanTakePut canTakePut) {
         System.out.println(this.getName() + " положил " + canBePut.getName()
-                + " на: " + canTakePut.getName());
+                + " на " + canTakePut.getName());
         canTakePut.addItems((Item) canBePut);
         this.removeItem((Item) canBePut);
     }
