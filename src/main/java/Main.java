@@ -24,6 +24,10 @@ public class Main {
         Bell bell = new Bell("Звонок");
         Peephole peephole = new Peephole("Глазок");
         ElectricSwitch electricSwitch = new ElectricSwitch("Электрический выключатель");
+        Uvula uvula = new Uvula("Язычок", new Inscription("Сантик"));
+        Hole hole = new Hole("Отверстие");
+        Wall wall = new Wall("Стена", hole);
+        wall.setHole(hole);
         cabinet.setShelves(new Shelf("полочка"), new Shelf("полка"));
         room.setItems(new Table("Стол"), new Chair("Стулья"),
                 cabinet, new WaterDispenser("Рукомойник"),
@@ -91,6 +95,11 @@ public class Main {
         bell.ring(TimeExpression.RIGHT_NOW);
 
         room.replaceItem(electricSwitch, peephole);
-        peephole.blink(Colors.RED);
+        peephole.blink(Colors.randomColor());
+
+        they.see(peephole);
+        uvula.leanOut(wall.getHole());
+        they.notice(uvula);
+        uvula.getInscription(0).blink(Colors.randomColor());
     }
 }

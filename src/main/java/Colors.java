@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public enum Colors{
     RED("Красный"),
     GREEN("Зеленый"),
@@ -20,4 +22,12 @@ public enum Colors{
     public String getName(){
         return color;
     }
+
+    private static final Random PRNG = new Random();
+
+    public static Colors randomColor()  {
+        Colors[] colors = values();
+        return colors[PRNG.nextInt(colors.length)];
+    }
+
 }

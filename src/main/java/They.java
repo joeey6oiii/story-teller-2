@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class They implements TryAble, FindAble, GoAble,
-        OpenAble, ReadAble, PayToGetAble {
+        OpenAble, ReadAble, PayToGetAble, SeeAble, NoticeAble {
     private ArrayList<Entity> people = new ArrayList<>();
 
     public They(Entity ... people){
@@ -156,6 +156,14 @@ public class They implements TryAble, FindAble, GoAble,
 
     public void wantRest(){
         System.out.println(this.getNames() + " хотели отдохнуть");
+    }
+
+    public void see(CanBeSeen canBeSeen){
+        System.out.println(this.getNames() + " увидели " + canBeSeen.getName());
+    }
+
+    public void notice(CanBeNoticed canBeNoticed){
+        System.out.println(this.getNames() + " заметили " + canBeNoticed.getName());
     }
 
     public String getNames(){

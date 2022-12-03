@@ -1,4 +1,5 @@
-public class Peephole extends Item implements CanBeReplaced, BlinkAble{
+public class Peephole extends Item implements CanBeReplaced,
+        BlinkAble, CanBeSeen{
     public Peephole(String name){
         super(name);
     }

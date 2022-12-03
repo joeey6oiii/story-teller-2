@@ -1,4 +1,4 @@
-public class Inscription implements CanBeRead {
+public class Inscription implements CanBeRead, BlinkAble {
     private String scription;
 
     public Inscription(String scription) {
@@ -15,5 +15,9 @@ public class Inscription implements CanBeRead {
 
     public String say() {
         return getName();
+    }
+
+    public void blink(Colors color) {
+        System.out.println("Замигала" + " " + color.getName() + " надпись: " + this.getName());
     }
 }
