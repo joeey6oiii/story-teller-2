@@ -1,3 +1,9 @@
+import entities.*;
+import enums.*;
+import items.*;
+import items.forItems.Inscription;
+import places.*;
+
 public class Main {
     public static void main(String[] args) {
         Human traveler1 = new Neznayka("Незнайка");
