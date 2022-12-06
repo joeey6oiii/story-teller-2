@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface CanBeReplaced {
+public interface IsFindable {
     String getName();
 }

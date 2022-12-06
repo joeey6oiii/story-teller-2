@@ -1,10 +1,10 @@
 package places;
 
-import interfaces.CanLeanOutFrom;
+import interfaces.IsLeanable;
 
 import java.util.Objects;
 
-public class Hole extends Place implements CanLeanOutFrom {
+public class Hole extends Place implements IsLeanable {
     private Place location;
 
     public Hole(String name){

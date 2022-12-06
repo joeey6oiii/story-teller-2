@@ -18,7 +18,7 @@ public class Human extends Entity implements PutAble{
         super(name, location);
     }
 
-    public void put(CanBePut canBePut, CanTakePut canTakePut) {
+    public void put(IsPutable canBePut, TakePutAble canTakePut) {
         System.out.println(this.getName() + " положил " + canBePut.getName()
                 + " на " + canTakePut.getName());
         canTakePut.addItems((Item) canBePut);

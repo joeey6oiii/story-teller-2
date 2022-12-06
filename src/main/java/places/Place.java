@@ -1,10 +1,10 @@
 package places;
 
-import interfaces.CanBeFind;
+import interfaces.IsFindable;
 
 import java.util.Objects;
 
-public abstract class Place implements CanBeFind {
+public abstract class Place implements IsFindable {
     private String name;
 
     public Place(){}

@@ -2,7 +2,7 @@ package interfaces;
 
 import items.Item;
 
-public interface CanTakePut {
+public interface TakePutAble {
     String getName();
     void addItems(Item... items);
 }

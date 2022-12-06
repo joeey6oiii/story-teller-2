@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface CanBeNoticed {
+public interface IsReplaceable {
     String getName();
 }

@@ -1,15 +1,14 @@
 package places;
 
-import interfaces.CanBeReplaced;
-import interfaces.CanReplaceItems;
-import interfaces.RoomInfo;
+import interfaces.IsReplaceable;
+import interfaces.ReplaceItemsAble;
+import interfaces.ItemsCheckable;
 import items.Item;
-import places.Place;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Room extends Place implements RoomInfo, CanReplaceItems {
+public class Room extends Place implements ItemsCheckable, ReplaceItemsAble {
     private long RoomCost = 0;
     private int id;
     private Place location;
@@ -64,7 +63,7 @@ public class Room extends Place implements RoomInfo, CanReplaceItems {
         }
     }
 
-    public void replaceItem(CanBeReplaced itemToReplace, CanBeReplaced itemForReplace) {
+    public void replaceItem(IsReplaceable itemToReplace, IsReplaceable itemForReplace) {
         boolean notReplaced = true;
         for(Item item : this.items) {
             if (item.equals(itemToReplace)) {

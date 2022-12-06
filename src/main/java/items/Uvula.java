@@ -1,16 +1,15 @@
 package items;
 
-import interfaces.CanLeanOutFrom;
-import interfaces.CanBeNoticed;
-import interfaces.CanBeRead;
+import interfaces.IsLeanable;
+import interfaces.IsNoticeable;
+import interfaces.IsReadable;
 import interfaces.LeanOutAble;
 import items.forItems.Inscription;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Uvula extends Item implements CanBeRead,
-        LeanOutAble, CanBeNoticed {
+public class Uvula extends Item implements IsReadable, LeanOutAble, IsNoticeable {
     private ArrayList<Inscription> scription = new ArrayList<>();
 
     public Uvula(String name, Inscription... inscription) {
@@ -34,7 +33,7 @@ public class Uvula extends Item implements CanBeRead,
         return this.getScriptions();
     }
 
-    public void leanOut(CanLeanOutFrom location) {
+    public void leanOut(IsLeanable location) {
         System.out.println("Из " + location.getName() +
                 " в " + location.getLocation().getName() +
                 " высунулся " + this.getName());

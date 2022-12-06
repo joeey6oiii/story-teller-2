@@ -1,8 +1,8 @@
 package items;
 
-import interfaces.CanBePut;
+import interfaces.IsPutable;
 
-public class Hat extends Item implements CanBePut {
+public class Hat extends Item implements IsPutable {
     public Hat(String name){
         super(name);
     }

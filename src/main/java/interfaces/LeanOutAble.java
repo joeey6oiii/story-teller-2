@@ -1,5 +1,5 @@
 package interfaces;
 
 public interface LeanOutAble {
-    void leanOut(CanLeanOutFrom location);
+    void leanOut(IsLeanable location);
 }

@@ -1,10 +1,10 @@
 package items;
 
-import interfaces.CanBeFind;
+import interfaces.IsFindable;
 
 import java.util.Objects;
 
-public abstract class Item implements CanBeFind {
+public abstract class Item implements IsFindable {
     private String name;
     private long cost;
 
@@ -16,7 +16,6 @@ public abstract class Item implements CanBeFind {
 
     public Item(String name, long cost) {
         this.name = name;
-//        this.id = id;
         this.cost = cost;
     }
 

@@ -1,11 +1,11 @@
 package items;
 
-import interfaces.CanBeOpened;
+import interfaces.IsOpenable;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Cabinet extends Item implements CanBeOpened {
+public class Cabinet extends Item implements IsOpenable {
     private ArrayList<Shelf> shelves = new ArrayList<>();
     private boolean isOpen = false;
 

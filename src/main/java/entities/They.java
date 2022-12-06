@@ -7,8 +7,8 @@ import places.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class They implements TryAble, FindAble, GoAble,
-        OpenAble, ReadAble, PayToGetAble, SeeAble, NoticeAble, WantRestAble {
+public class They implements TryAble, FindAble, GoAble, OpenAble,
+        ReadAble, PayToGetAble, SeeAble, NoticeAble, WantRestAble {
     private ArrayList<Entity> people = new ArrayList<>();
 
     public They(Entity ... people){
@@ -33,7 +33,7 @@ public class They implements TryAble, FindAble, GoAble,
         return people.toArray(new Entity[people.size()]);
     }
 
-    public void find(CanBeFind canBeFind){
+    public void find(IsFindable canBeFind){
         int keys = 0;
         if(canBeFind.getClass().equals(Room.class)){
             for(Entity entity : people){
@@ -52,13 +52,13 @@ public class They implements TryAble, FindAble, GoAble,
         }
     }
 
-    public void read(CanBeRead readable) {
+    public void read(IsReadable readable) {
         if(this.people.size() == 0){
-            System.out.println("Никто не читал " + readable.getClass().getName() + ": " + readable.say());
+            System.out.println("Никто не читал " + readable.getName() + ": " + readable.say());
         }
         else{
             System.out.println(this.getNames() + " читали " +
-                    readable.getClass().getName() + ": " + readable.say());
+                    readable.getName() + ": " + readable.say());
         }
     }
 
@@ -156,7 +156,7 @@ public class They implements TryAble, FindAble, GoAble,
         }
     }
 
-    public void open(CanBeOpened canBeOpened){
+    public void open(IsOpenable canBeOpened){
         System.out.println(this.getNames() + " открыли " + canBeOpened.getName());
         canBeOpened.setOpen(true);
     }
@@ -165,11 +165,11 @@ public class They implements TryAble, FindAble, GoAble,
         System.out.println(this.getNames() + " хотели отдохнуть");
     }
 
-    public void see(CanBeSeen canBeSeen){
+    public void see(IsSeeable canBeSeen){
         System.out.println(this.getNames() + " увидели " + canBeSeen.getName());
     }
 
-    public void notice(CanBeNoticed canBeNoticed){
+    public void notice(IsNoticeable canBeNoticed){
         System.out.println(this.getNames() + " заметили " + canBeNoticed.getName());
     }
 

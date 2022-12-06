@@ -1,5 +1,5 @@
 package interfaces;
 
 public interface SeeAble {
-    void see(CanBeSeen canBeSeen);
+    void see(IsSeeable canBeSeen);
 }

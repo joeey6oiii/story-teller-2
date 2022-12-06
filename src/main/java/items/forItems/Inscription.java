@@ -2,11 +2,11 @@ package items.forItems;
 
 import enums.Colors;
 import interfaces.BlinkAble;
-import interfaces.CanBeRead;
+import interfaces.IsReadable;
 
 import java.util.Objects;
 
-public class Inscription implements CanBeRead, BlinkAble {
+public class Inscription implements IsReadable, BlinkAble {
     private String scription;
 
     public Inscription(String scription) {

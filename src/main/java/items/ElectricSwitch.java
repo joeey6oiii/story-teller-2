@@ -1,8 +1,8 @@
 package items;
 
-import interfaces.CanBeReplaced;
+import interfaces.IsReplaceable;
 
-public class ElectricSwitch extends Item implements CanBeReplaced {
+public class ElectricSwitch extends Item implements IsReplaceable {
     public ElectricSwitch(String name){
         super(name);
     }

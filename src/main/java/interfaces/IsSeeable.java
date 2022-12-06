@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface CanBePut {
+public interface IsSeeable {
     String getName();
 }

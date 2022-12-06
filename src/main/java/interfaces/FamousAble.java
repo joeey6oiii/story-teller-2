@@ -2,6 +2,6 @@ package interfaces;
 
 import enums.Status;
 
-public interface CanBeFamous {
+public interface FamousAble {
     void famous(Status status);
 }

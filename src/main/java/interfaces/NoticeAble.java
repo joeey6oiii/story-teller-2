@@ -1,5 +1,5 @@
 package interfaces;
 
 public interface NoticeAble {
-    void notice(CanBeNoticed canBeNoticed);
+    void notice(IsNoticeable canBeNoticed);
 }

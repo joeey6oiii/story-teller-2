@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface CanBeOpened {
+public interface IsOpenable {
     String getName();
     void setOpen(boolean opened);
     boolean getOpen();

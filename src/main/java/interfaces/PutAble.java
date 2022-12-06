@@ -1,5 +1,5 @@
 package interfaces;
 
 public interface PutAble {
-    void put(CanBePut canBePut, CanTakePut canTakePut);
+    void put(IsPutable canBePut, TakePutAble canTakePut);
 }

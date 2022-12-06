@@ -1,11 +1,11 @@
 package items;
 
-import interfaces.CanTakePut;
+import interfaces.TakePutAble;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Shelf extends Item implements CanTakePut {
+public class Shelf extends Item implements TakePutAble {
     private ArrayList<Item> items = new ArrayList<>();
 
     public Shelf(String name) {

@@ -2,7 +2,7 @@ package interfaces;
 
 import places.Place;
 
-public interface CanLeanOutFrom {
+public interface IsLeanable {
     String getName();
     Place getLocation();
 }

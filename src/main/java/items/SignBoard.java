@@ -1,12 +1,12 @@
 package items;
 
-import interfaces.CanBeRead;
+import interfaces.IsReadable;
 import items.forItems.Inscription;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class SignBoard extends Item implements CanBeRead {
+public class SignBoard extends Item implements IsReadable {
     private int id;
     private ArrayList<Inscription> scription = new ArrayList<>();
 

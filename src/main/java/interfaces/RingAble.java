@@ -2,6 +2,6 @@ package interfaces;
 
 import enums.TimeExpression;
 
-public interface CanRing {
+public interface RingAble {
     void ring(TimeExpression time);
 }

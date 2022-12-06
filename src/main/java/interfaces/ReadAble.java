@@ -1,5 +1,5 @@
 package interfaces;
 
 public interface ReadAble {
-    void read(CanBeRead readable);
+    void read(IsReadable readable);
 }

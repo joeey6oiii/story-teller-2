@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface RoomInfo {
+public interface ItemsCheckable {
     void getItems();
 }

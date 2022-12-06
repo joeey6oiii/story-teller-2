@@ -2,8 +2,8 @@ package places;
 
 import entities.Entity;
 import enums.Status;
-import interfaces.CanBeFamous;
-import interfaces.CanTakeArrive;
+import interfaces.FamousAble;
+import interfaces.TakeArriveAble;
 import interfaces.Revisorable;
 import items.Money;
 import items.SignBoard;
@@ -11,8 +11,7 @@ import items.SignBoard;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Hotel extends Place implements Revisorable, CanBeFamous,
-        CanTakeArrive {
+public class Hotel extends Place implements Revisorable, FamousAble, TakeArriveAble {
     private Money money;
     private boolean lackOfInhabitants = true;
     private ArrayList<Room> rooms = new ArrayList<>();

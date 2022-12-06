@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface CanBeFind {
+public interface IsNoticeable {
     String getName();
 }

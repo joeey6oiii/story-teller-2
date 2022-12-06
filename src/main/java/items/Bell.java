@@ -1,9 +1,9 @@
 package items;
 
 import enums.TimeExpression;
-import interfaces.CanRing;
+import interfaces.RingAble;
 
-public class Bell extends Item implements CanRing {
+public class Bell extends Item implements RingAble {
     public Bell(String name) {
         super(name);
     }
