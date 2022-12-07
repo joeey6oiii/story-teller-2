@@ -47,8 +47,12 @@ public class They implements TryAble, FindAble, GoAble, OpenAble,
                 System.out.println(this.getNames() + " нашли случайный " + canBeFind.getName());
             }
             else{
-                System.out.println(this.getNames() + " нашли " + canBeFind.getName());
+                System.out.println(this.getNames() + " нашли " +
+                        canBeFind.getName() + " " + ((Room) canBeFind).getId());
             }
+        }
+        else{
+            System.out.println(this.getNames() + " нашли " + canBeFind.getName());
         }
     }
 
@@ -103,18 +107,28 @@ public class They implements TryAble, FindAble, GoAble, OpenAble,
                     " " + temp + " и получили " + item.getName() + ". "
                     + item.getName() + " выдан: " + people.get(temp4).getName());
             temp2 = totalMoney - item.getCost();
-            if(temp2 > 0 && temp2 % this.people.size() == 0) {
-                temp2 = temp2 / this.people.size();
-                for (Entity entity : this.people) {
-                    entity.addItem(new Money(temp, temp2));
+            if(temp2 < people.size() && temp2 > 0){
+                for(Entity entity : this.people){
+                    if(temp2 != 0){
+                        entity.addItem(new Money(temp, 1L));
+                        temp2 -= 1;
+                    }
                 }
             }
-            else if(temp2 > 0 && temp2 % this.people.size() != 0){
-                temp2 = (temp2 - 1) / this.people.size();
-                for(int i = 1; i < this.people.size(); i++){
-                    people.get(i).addItem(new Money(temp, temp2));
+            else{
+                if(temp2 > 0 && temp2 % this.people.size() == 0) {
+                    temp2 = temp2 / this.people.size();
+                    for (Entity entity : this.people) {
+                        entity.addItem(new Money(temp, temp2));
+                    }
                 }
-                people.get(0).addItem(new Money(temp,temp2 + 1));
+                else if(temp2 > 0 && temp2 % this.people.size() != 0){
+                    temp2 = (temp2 - 1) / this.people.size();
+                    for(int i = 1; i < this.people.size(); i++){
+                        people.get(i).addItem(new Money(temp, temp2));
+                    }
+                    people.get(0).addItem(new Money(temp,temp2 + 1));
+                }
             }
         }
     }
@@ -122,8 +136,8 @@ public class They implements TryAble, FindAble, GoAble, OpenAble,
     public void tryAccess(Room room){
         ArrayList<Key> keys = new ArrayList<>();
         Place entplace = null;
-        boolean access = false;
         String temp0 = "";
+        boolean access = false;
         for(Entity entity : people) {
             entplace = entity.getLocation();
             for (int i = 0; i < entity.getItems().length; i++) {
