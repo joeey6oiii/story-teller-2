@@ -1,6 +1,6 @@
 package entities;
 
-import places.Place;
+import places.*;
 
 public class Neznayka extends Human {
     public Neznayka(String name){

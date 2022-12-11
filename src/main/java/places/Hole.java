@@ -1,6 +1,6 @@
 package places;
 
-import interfaces.IsLeanable;
+import interfaces.*;
 
 import java.util.Objects;
 

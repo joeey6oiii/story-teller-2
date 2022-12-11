@@ -1,9 +1,7 @@
 package items;
 
 import enums.Colors;
-import interfaces.BlinkAble;
-import interfaces.IsReplaceable;
-import interfaces.IsSeeable;
+import interfaces.*;
 
 public class Peephole extends Item implements IsReplaceable, BlinkAble, IsSeeable {
     public Peephole(String name){

@@ -1,6 +1,6 @@
 package items;
 
-import interfaces.IsOpenable;
+import interfaces.*;
 
 import java.util.ArrayList;
 import java.util.Objects;

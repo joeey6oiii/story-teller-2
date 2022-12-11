@@ -1,6 +1,6 @@
 package items;
 
-import interfaces.TakePutAble;
+import interfaces.*;
 
 import java.util.ArrayList;
 import java.util.Objects;

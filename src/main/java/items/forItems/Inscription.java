@@ -1,8 +1,7 @@
 package items.forItems;
 
 import enums.Colors;
-import interfaces.BlinkAble;
-import interfaces.IsReadable;
+import interfaces.*;
 
 import java.util.Objects;
 

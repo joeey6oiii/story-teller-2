@@ -1,10 +1,7 @@
 package items;
 
-import interfaces.IsLeanable;
-import interfaces.IsNoticeable;
-import interfaces.IsReadable;
-import interfaces.LeanOutAble;
-import items.forItems.Inscription;
+import interfaces.*;
+import items.forItems.*;
 
 import java.util.ArrayList;
 import java.util.Objects;

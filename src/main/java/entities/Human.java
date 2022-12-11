@@ -1,8 +1,8 @@
 package entities;
 
 import interfaces.*;
-import items.Item;
-import places.Place;
+import items.*;
+import places.*;
 
 public class Human extends Entity implements PutAble{
 

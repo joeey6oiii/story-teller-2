@@ -1,6 +1,6 @@
 package items;
 
-import interfaces.IsPutable;
+import interfaces.*;
 
 public class Hat extends Item implements IsPutable {
     public Hat(String name){

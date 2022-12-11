@@ -1,7 +1,7 @@
 package entities;
 
-import items.Item;
-import places.Place;
+import items.*;
+import places.*;
 
 import java.util.ArrayList;
 import java.util.Objects;

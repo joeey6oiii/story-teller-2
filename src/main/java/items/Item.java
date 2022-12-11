@@ -1,6 +1,6 @@
 package items;
 
-import interfaces.IsFindable;
+import interfaces.*;
 
 import java.util.Objects;
 

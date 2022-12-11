@@ -1,7 +1,7 @@
 package items;
 
-import interfaces.IsReadable;
-import items.forItems.Inscription;
+import interfaces.*;
+import items.forItems.*;
 
 import java.util.ArrayList;
 import java.util.Objects;

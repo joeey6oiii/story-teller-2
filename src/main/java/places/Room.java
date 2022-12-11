@@ -1,9 +1,7 @@
 package places;
 
-import interfaces.IsReplaceable;
-import interfaces.ReplaceItemsAble;
-import interfaces.ItemsCheckable;
-import items.Item;
+import interfaces.*;
+import items.*;
 
 import java.util.ArrayList;
 import java.util.Objects;

@@ -1,7 +1,7 @@
 import entities.*;
 import enums.*;
 import items.*;
-import items.forItems.Inscription;
+import items.forItems.*;
 import places.*;
 
 public class Main {

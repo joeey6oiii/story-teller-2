@@ -1,12 +1,9 @@
 package places;
 
-import entities.Entity;
+import entities.*;
 import enums.Status;
-import interfaces.FamousAble;
-import interfaces.TakeArriveAble;
-import interfaces.Revisorable;
-import items.Money;
-import items.SignBoard;
+import interfaces.*;
+import items.*;
 
 import java.util.ArrayList;
 import java.util.Objects;
