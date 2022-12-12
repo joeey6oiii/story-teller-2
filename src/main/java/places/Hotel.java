@@ -6,6 +6,7 @@ import interfaces.*;
 import items.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Hotel extends Place implements Revisorable, FamousAble, TakeArriveAble {
@@ -25,17 +26,13 @@ public class Hotel extends Place implements Revisorable, FamousAble, TakeArriveA
 
     public Hotel(String name, Room... rooms) {
         super(name);
-        for (Room room : rooms) {
-            this.rooms.add(room);
-        }
+        this.rooms.addAll(Arrays.asList(rooms));
     }
 
     public Hotel(String name, Money money, Room... rooms) {
         super(name);
         this.money = money;
-        for (Room room : rooms) {
-            this.rooms.add(room);
-        }
+        this.rooms.addAll(Arrays.asList(rooms));
     }
 
     public String getCurrencyName() {
@@ -68,21 +65,15 @@ public class Hotel extends Place implements Revisorable, FamousAble, TakeArriveA
     }
 
     public void setTenants(Entity... entities) {
-        for (Entity entity : entities) {
-            tenants.add(entity);
-        }
+        tenants.addAll(Arrays.asList(entities));
     }
 
     public void addTenants(Entity... entities) {
-        for (Entity entity : entities) {
-            tenants.add(entity);
-        }
+        tenants.addAll(Arrays.asList(entities));
     }
 
     public void setSignBoard(SignBoard... signBoard) {
-        for (SignBoard sign : signBoard) {
-            this.signBoard.add(sign);
-        }
+        this.signBoard.addAll(Arrays.asList(signBoard));
     }
 
     public SignBoard getSignBoard(int id) {

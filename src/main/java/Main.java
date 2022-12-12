@@ -23,6 +23,15 @@ public class Main {
         traveler2.setItems(new Money("Сантик",
                  Math.round((Math.random() * 35 + 10))), hatTraveler2);
 
+        Soup soup = new Soup("Перловый суп");
+        Pie pie = new Pie("Пирог"); // TODO: plural forms of meals - every meal is a new obj
+        Porridge porridge = new Porridge("Гречневая каша");
+        Butter butter = new Butter("Масло");
+
+        Canteen canteen = new Canteen("Столовая"); // TODO: meal list
+        traveler1.setLocation(canteen);
+        traveler2.setLocation(canteen);
+
         Hotel hotel = new Hotel("Гостиница \"Экономическая\"");
         Room room = new Room("Номер", 1);
         room.setRoomCost(Math.round(((Math.random() + 24) * 2)));
@@ -73,6 +82,9 @@ public class Main {
             Human tenant = new Human();
             hotel3.addTenants(tenant);
         }
+
+        they.eat(soup, pie, porridge, butter); // TODO: they eat special meals from meal list
+        traveler1.praise(soup, porridge, pie); // TODO: random praise (meals list dependency)
 
         hotel.takeArrive(they.getEntities());
         hotel.famous(Status.CHEAPNESS);

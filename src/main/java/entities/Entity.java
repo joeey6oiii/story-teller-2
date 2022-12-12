@@ -4,6 +4,8 @@ import items.*;
 import places.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Objects;
 
 public abstract class Entity {
@@ -39,9 +41,7 @@ public abstract class Entity {
     }
 
     public void setItems(Item... items){
-        for(Item item : items){
-            this.items.add(item);
-        }
+        Collections.addAll(this.items, items);
     }
 
     public Item getItemUsingIndex(int index){
@@ -53,9 +53,7 @@ public abstract class Entity {
     }
 
     public void addItem(Item... item) {
-        for(Item it : item){
-            this.items.add(it);
-        }
+        this.items.addAll(Arrays.asList(item));
     }
 
     public void removeItem(Item... items){

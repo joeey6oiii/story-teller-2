@@ -5,22 +5,19 @@ import items.*;
 import places.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
-public class They implements TryAble, FindAble, GoAble, OpenAble,
-        ReadAble, PayToGetAble, SeeAble, NoticeAble, WantRestAble {
+public class They implements TryAble, FindAble, GoAble, OpenAble, ReadAble,
+        PayToGetAble, SeeAble, NoticeAble, WantRestAble, SitAble, EatAble {
     private ArrayList<Entity> people = new ArrayList<>();
 
     public They(Entity ... people){
-        for(Entity entity : people){
-            this.people.add(entity);
-        }
+        Collections.addAll(this.people, people);
     }
 
     public void addPeople(Entity ... people){
-        for(Entity entity : people){
-            this.people.add(entity);
-        }
+        Collections.addAll(this.people, people);
     }
 
     public void setLocation(Place location){
@@ -185,6 +182,19 @@ public class They implements TryAble, FindAble, GoAble, OpenAble,
 
     public void notice(IsNoticeable canBeNoticed){
         System.out.println(this.getNames() + " заметили " + canBeNoticed.getName());
+    }
+
+    public void sit(){
+        System.out.println(this.getNames() + " сидели "); // TODO
+    }
+
+    public void eat(IsEatable ... foods){
+        String temp = "";
+        for(IsEatable food : foods){
+            temp += food.getName() + ", ";
+        }
+        temp = temp.substring(0, temp.length() - 2);
+        System.out.println(this.getNames() + " кушают " + temp);
     }
 
     public String getNames(){

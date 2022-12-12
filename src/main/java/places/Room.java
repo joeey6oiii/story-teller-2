@@ -4,6 +4,7 @@ import interfaces.*;
 import items.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 public class Room extends Place implements ItemsCheckable, ReplaceItemsAble {
@@ -50,15 +51,11 @@ public class Room extends Place implements ItemsCheckable, ReplaceItemsAble {
     }
 
     public void setItems(Item... items){
-        for(Item item : items){
-            this.items.add(item);
-        }
+        Collections.addAll(this.items, items);
     }
 
     public void addItems(Item... items){
-        for(Item item : items){
-            this.items.add(item);
-        }
+        Collections.addAll(this.items, items);
     }
 
     public void replaceItem(IsReplaceable itemToReplace, IsReplaceable itemForReplace) {
