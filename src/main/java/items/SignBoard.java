@@ -4,24 +4,22 @@ import interfaces.*;
 import items.forItems.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Objects;
 
 public class SignBoard extends Item implements IsReadable {
-    private int id;
+    private final int id;
     private ArrayList<Inscription> scription = new ArrayList<>();
 
     public SignBoard(String name, int id, Inscription... inscription) {
         super(name);
         this.id = id;
-        for(Inscription annotation : inscription){
-            this.scription.add(annotation);
-        }
+        this.scription.addAll(Arrays.asList(inscription));
     }
 
     public void setInscription(Inscription... inscription) {
-        for(Inscription annotation : inscription){
-            this.scription.add(annotation);
-        }
+        Collections.addAll(this.scription, inscription);
     }
 
     public int getId() {

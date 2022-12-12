@@ -3,6 +3,7 @@ package items;
 import interfaces.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Shelf extends Item implements TakePutAble {
@@ -13,9 +14,7 @@ public class Shelf extends Item implements TakePutAble {
     }
 
     public void addItems(Item ... items) {
-        for(Item item : items){
-            this.items.add(item);
-        }
+        this.items.addAll(Arrays.asList(items));
     }
 
     public ArrayList<Item> getItems(){

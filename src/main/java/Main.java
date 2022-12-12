@@ -23,12 +23,12 @@ public class Main {
         traveler2.setItems(new Money("Сантик",
                  Math.round((Math.random() * 35 + 10))), hatTraveler2);
 
-        Soup soup = new Soup("Перловый суп");
-        Pie pie = new Pie("Пирог"); // TODO: plural forms of meals - every meal is a new obj
-        Porridge porridge = new Porridge("Гречневая каша");
-        Butter butter = new Butter("Масло");
+        Canteen canteen = new Canteen("Столовая");
+        canteen.setMeals(new Soup("Перловый суп"), new Pie("Пирог с мясом"),
+                new Pie("Пирог с малиной"), new Pie("Пирог с ежевикой"),
+                new Porridge("Гречневая каша"), new Porridge("Манная каша"),
+                new Butter("Масло"), new Milk("Молоко"), new Compote("Компот"));
 
-        Canteen canteen = new Canteen("Столовая"); // TODO: meal list
         traveler1.setLocation(canteen);
         traveler2.setLocation(canteen);
 
@@ -46,7 +46,7 @@ public class Main {
         cabinet.setShelves(new Shelf("полочка"), new Shelf("полка"));
         room.setItems(new Table("Стол"), new Chair("Стулья"),
                 cabinet, new WaterDispenser("Рукомойник"),
-                new Mirror("Зеркало"), new Televisor("Телевизор"), electricSwitch);
+                new Mirror("Зеркало"), new TV("Телевизор"), electricSwitch);
         hotel.setRooms(room);
         for(int i = room.getId() + 1; i < Math.round((Math.random() * 6)); i++){
             Room room1 = new Room("Номер", i);
@@ -83,8 +83,19 @@ public class Main {
             hotel3.addTenants(tenant);
         }
 
-        they.eat(soup, pie, porridge, butter); // TODO: they eat special meals from meal list
-        traveler1.praise(soup, porridge, pie); // TODO: random praise (meals list dependency)
+        Meal[] meals = new Meal[6];
+        for(int i = 0; i < meals.length; i++){
+            meals[i] = canteen.randomMeal();
+            canteen.removeMeals(meals[i]);
+        }
+
+        Meal[] mealToPraise = new Meal[3];
+        for(int i = 0; i < mealToPraise.length; i++){
+            mealToPraise[i] = meals[(int) Math.round(Math.random() * (meals.length - 1))];
+        }
+
+        they.consume(meals);
+        traveler1.praise(mealToPraise);
 
         hotel.takeArrive(they.getEntities());
         hotel.famous(Status.CHEAPNESS);

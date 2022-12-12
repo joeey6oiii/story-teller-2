@@ -4,6 +4,7 @@ import interfaces.*;
 import items.forItems.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Uvula extends Item implements IsReadable, LeanOutAble, IsNoticeable {
@@ -11,15 +12,11 @@ public class Uvula extends Item implements IsReadable, LeanOutAble, IsNoticeable
 
     public Uvula(String name, Inscription... inscription) {
         super(name);
-        for(Inscription annotation : inscription){
-            this.scription.add(annotation);
-        }
+        this.scription.addAll(Arrays.asList(inscription));
     }
 
     public void setInscription(Inscription... inscription) {
-        for(Inscription annotation : inscription){
-            this.scription.add(annotation);
-        }
+        this.scription.addAll(Arrays.asList(inscription));
     }
 
     public Inscription getInscription(int index){

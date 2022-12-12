@@ -3,7 +3,7 @@ package items;
 import java.util.Objects;
 
 public class Key extends Item {
-    private int id;
+    private final int id;
 
     public Key(String name, long cost, int id){
         super(name, cost);

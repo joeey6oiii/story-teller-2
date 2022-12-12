@@ -1,9 +1,10 @@
 package items;
 
-import interfaces.*;
-
-public class Pie extends Item implements IsEatable, IsPraiseable {
+public class Pie extends Meal {
     public Pie(String name){
         super(name);
+    }
+    public Pie(String name, long cost){
+        super(name, cost);
     }
 }

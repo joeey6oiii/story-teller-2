@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 public class They implements TryAble, FindAble, GoAble, OpenAble, ReadAble,
-        PayToGetAble, SeeAble, NoticeAble, WantRestAble, SitAble, EatAble {
+        PayToGetAble, SeeAble, NoticeAble, WantRestAble, SitAble, ConsumeAble {
     private ArrayList<Entity> people = new ArrayList<>();
 
     public They(Entity ... people){
@@ -188,13 +188,13 @@ public class They implements TryAble, FindAble, GoAble, OpenAble, ReadAble,
         System.out.println(this.getNames() + " сидели "); // TODO
     }
 
-    public void eat(IsEatable ... foods){
+    public void consume(IsConsumable... consumables){
         String temp = "";
-        for(IsEatable food : foods){
+        for(IsConsumable food : consumables){
             temp += food.getName() + ", ";
         }
         temp = temp.substring(0, temp.length() - 2);
-        System.out.println(this.getNames() + " кушают " + temp);
+        System.out.println(this.getNames() + " используют на себе " + temp);
     }
 
     public String getNames(){

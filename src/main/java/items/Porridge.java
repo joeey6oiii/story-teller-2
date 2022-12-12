@@ -1,9 +1,10 @@
 package items;
 
-import interfaces.*;
-
-public class Porridge extends Item implements IsEatable, IsPraiseable {
+public class Porridge extends Meal {
     public Porridge(String name){
         super(name);
+    }
+    public Porridge(String name, long cost){
+        super(name, cost);
     }
 }

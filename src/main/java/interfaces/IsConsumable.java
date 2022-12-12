@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface IsEatable {
+public interface IsConsumable {
     String getName();
 }
