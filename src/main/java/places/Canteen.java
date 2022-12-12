@@ -33,19 +33,42 @@ public class Canteen extends Place implements ItemsCheckable {
         return meals.get(new Random().nextInt(meals.size()));
     }
 
+    public void setItems(Item ... items){
+        this.items.addAll(Arrays.asList(items));
+    }
+
+    public void addItems(Item ... items){
+        Collections.addAll(this.items, items);
+    }
+
+    public void removeItems(Item ... items){
+        this.items.removeAll(Arrays.asList(items));
+    }
+
     public void getItems(){
-        String temp = "";
+        StringBuilder temp = new StringBuilder();
         for(Item item : items){
-            temp += item.getName() + ", ";
+            temp.append(item.getName()).append(", ");
         }
-        temp = temp.substring(0, temp.length() - 2);
+        temp = new StringBuilder(temp.substring(0, temp.length() - 2));
         System.out.println("В " + this.getName() + " есть " + temp);
+    }
+
+    public Item getChair(int index){
+        ArrayList<Chair> chairs = new ArrayList<>();
+        for(Item item : items){
+            if(item instanceof Chair){
+                chairs.add((Chair) item);
+            }
+        }
+        return chairs.get(index);
     }
 
     @Override
     public String toString() {
         return "Canteen{" +
                 "meals=" + meals +
+                ", items=" + items +
                 '}';
     }
 
@@ -55,11 +78,11 @@ public class Canteen extends Place implements ItemsCheckable {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Canteen canteen = (Canteen) o;
-        return Objects.equals(meals, canteen.meals);
+        return Objects.equals(meals, canteen.meals) && Objects.equals(items, canteen.items);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), meals);
+        return Objects.hash(super.hashCode(), meals, items);
     }
 }

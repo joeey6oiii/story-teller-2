@@ -87,19 +87,19 @@ public class Hotel extends Place implements Revisorable, FamousAble, TakeArriveA
     }
 
     public void takeArrive(Entity... entities) {
-        String temp = "";
+        StringBuilder temp = new StringBuilder();
         if(entities.length == 1) {
-            temp = entities[0].getName();
+            temp = new StringBuilder(entities[0].getName());
         }
         else if(entities.length == 2){
-            temp = entities[0].getName() + " и " + entities[1].getName();
+            temp = new StringBuilder(entities[0].getName() + " и " + entities[1].getName());
         }
         else{
             for(int i = 0; i < entities.length - 1; i++){
-                temp += entities[i].getName() + ", ";
+                temp.append(entities[i].getName()).append(", ");
             }
-            temp = temp.substring(0, temp.length() - 2);
-            temp += " и " + entities[entities.length - 1].getName();
+            temp = new StringBuilder(temp.substring(0, temp.length() - 2));
+            temp.append(" и ").append(entities[entities.length - 1].getName());
         }
         System.out.println(temp + " отправились ночевать в " + this.getName());
         for (Entity entity : entities) {
@@ -131,33 +131,33 @@ public class Hotel extends Place implements Revisorable, FamousAble, TakeArriveA
     }
 
     public void getHotelRoomsInfo() {
-        String temp = "";
-        String temp2 = "";
+        StringBuilder temp = new StringBuilder();
+        StringBuilder temp2 = new StringBuilder();
         for (int i = 0; i < rooms.size(); i++) {
-            temp += rooms.get(i).getRoomCost() + ", ";
+            temp.append(rooms.get(i).getRoomCost()).append(", ");
         }
-        temp = temp.substring(0, temp.length() - 2);
+        temp = new StringBuilder(temp.substring(0, temp.length() - 2));
         for (int j = 0; j < rooms.size(); j++) {
-            temp2 += rooms.get(j).getName() + " " + rooms.get(j).getId() + ", ";
+            temp2.append(rooms.get(j).getName()).append(" ").append(rooms.get(j).getId()).append(", ");
         }
-        temp2 = temp2.substring(0, temp2.length() - 2);
+        temp2 = new StringBuilder(temp2.substring(0, temp2.length() - 2));
         System.out.println("В " + this.getName() + " можно получить "
                 + temp2 + " за " + temp + " " + getCurrencyName());
     }
 
     public void comparisonRoomCost(Hotel hotel, Hotel... hotels) {
-        String tempString = "";
-        String tempString2 = "";
+        StringBuilder tempString = new StringBuilder();
+        StringBuilder tempString2 = new StringBuilder();
         float temp1 = 0;
         float temp2 = 0;
         for (Hotel h : hotels) {
-            tempString += h.getName() + ", ";
+            tempString.append(h.getName()).append(", ");
         }
         for(int g = 0; g < hotel.rooms.size(); g++) {
-            tempString2 += rooms.get(g).getName() + " " + rooms.get(g).getId() + ", ";
+            tempString2.append(rooms.get(g).getName()).append(" ").append(rooms.get(g).getId()).append(", ");
         }
-        tempString = tempString.substring(0, tempString.length() - 2);
-        tempString2 = tempString2.substring(0, tempString2.length() - 2);
+        tempString = new StringBuilder(tempString.substring(0, tempString.length() - 2));
+        tempString2 = new StringBuilder(tempString2.substring(0, tempString2.length() - 2));
         for (int i = 0; i < hotel.rooms.size(); i++) {
             temp1 += (float) hotel.rooms.get(i).getRoomCost() / hotel.rooms.size();
         }

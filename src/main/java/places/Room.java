@@ -78,13 +78,13 @@ public class Room extends Place implements ItemsCheckable, ReplaceItemsAble {
     }
 
     public String getItemsNames(){
-        String temp = "";
+        StringBuilder temp = new StringBuilder();
         for(int i = 0; i < items.size() - 1; i++){
-            temp += items.get(i).getName() + ", ";
+            temp.append(items.get(i).getName()).append(", ");
         }
-        temp = temp.substring(0, temp.length() - 2);
-        temp += " и " + items.get(items.size() - 1).getName();
-        return temp;
+        temp = new StringBuilder(temp.substring(0, temp.length() - 2));
+        temp.append(" и ").append(items.get(items.size() - 1).getName());
+        return temp.toString();
     }
 
     @Override

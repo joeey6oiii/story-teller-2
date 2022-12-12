@@ -1,10 +1,13 @@
 import entities.*;
 import enums.*;
+import events.*;
+import interfaces.IsSitable;
 import items.*;
 import items.forItems.*;
 import places.*;
 
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,6 +29,7 @@ public class Main {
                  Math.round((Math.random() * 35 + 10))), hatTraveler2);
 
         Canteen canteen = new Canteen("Столовая");
+        canteen.setItems(new Chair("Стульчик"), new Chair("Стул"), new Table("Столик"));
         canteen.setMeals(new Soup("Перловый суп"), new Pie("Пирог с мясом"),
                 new Pie("Пирог с малиной"), new Pie("Пирог с ежевикой"),
                 new Porridge("Гречневая каша"), new Porridge("Манная каша"),
@@ -106,11 +110,32 @@ public class Main {
             }
         }
 
+        Time.passMinutes(5);
+
+        traveler1.sit((IsSitable) canteen.getChair(0));
+        traveler2.sit((IsSitable) canteen.getChair(1));
+
         they.consume(meals);
+
+        for(int i = 0; i <= 2; i++){
+            int randomMethod = ThreadLocalRandom.current().nextInt(0, 3);
+            if (randomMethod == 0){
+                traveler2.quack();
+            } else if (randomMethod == 1){
+                traveler2.squint();
+            } else {
+                traveler2.smack(traveler2.getLips());
+            }
+        }
+
+        // TODO: comparison kozlik to cat
 
         traveler1.praise(mealsToPraise);
 
         traveler1.seem(Status.SPECIAL_TASTY, mealsToPraise);
+
+        traveler1.unSit((IsSitable) canteen.getChair(0));
+        traveler2.unSit((IsSitable) canteen.getChair(1));
 
         System.out.println();
 
