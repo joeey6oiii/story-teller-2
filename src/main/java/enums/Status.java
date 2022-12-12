@@ -3,7 +3,7 @@ package enums;
 public enum Status {
     CHEAPNESS("дешевизна"),
     FLAW("недостаток"),
-    NO_STATUS("");
+    SPECIAL_TASTY("Особенно вкусный");
 
     private final String status;
     Status(String status) {

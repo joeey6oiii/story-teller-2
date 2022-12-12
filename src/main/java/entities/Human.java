@@ -1,10 +1,12 @@
 package entities;
 
+import enums.*;
 import interfaces.*;
 import items.*;
 import places.*;
 
-public class Human extends Entity implements PutAble, PraiseAble{
+public class Human extends Entity implements PutAble, PraiseAble,
+        SeemAble{
 
     public Human(){
         super.setName("Человек");
@@ -26,11 +28,20 @@ public class Human extends Entity implements PutAble, PraiseAble{
     }
 
     public void praise(IsPraiseable ... isPraiseables){
-        String temp = "";
+        StringBuilder temp = new StringBuilder();
         for(IsPraiseable praiseable : isPraiseables){
-            temp += praiseable.getName() + ", ";
+            temp.append(praiseable.getName()).append(", ");
         }
-        temp = temp.substring(0, temp.length() - 2);
+        temp = new StringBuilder(temp.substring(0, temp.length() - 2));
         System.out.println(this.getName() + " хвалит " + temp);
+    }
+
+    public void seem(Status status, IsSeemable ... isSeemables){
+        StringBuilder temp = new StringBuilder();
+        for(IsSeemable seemable : isSeemables){
+            temp.append(seemable.getName()).append(", ");
+        }
+        temp = new StringBuilder(temp.substring(0, temp.length() - 2));
+        System.out.println(this.getName() + " кажется: " + temp + " " + status.getName());
     }
 }

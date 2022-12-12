@@ -39,7 +39,7 @@ public class Room extends Place implements ItemsCheckable, ReplaceItemsAble {
     }
 
     public void getItems() {
-        System.out.println("В " + this.getName() + " были " + this.getItemsNames());
+        System.out.println("В " + this.getName() + " есть " + this.getItemsNames());
     }
 
     public Place getRoomPlace() {

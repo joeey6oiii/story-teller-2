@@ -7,6 +7,10 @@ import java.util.Objects;
 public abstract class Place implements IsFindable {
     private String name;
 
+    {
+        name = "Нуль Место";
+    }
+
     public Place(){}
 
     public Place(String name){

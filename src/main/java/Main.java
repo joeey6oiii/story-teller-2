@@ -4,6 +4,8 @@ import items.*;
 import items.forItems.*;
 import places.*;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         Human traveler1 = new Neznayka("Незнайка");
@@ -85,17 +87,32 @@ public class Main {
 
         Meal[] meals = new Meal[6];
         for(int i = 0; i < meals.length; i++){
-            meals[i] = canteen.randomMeal();
-            canteen.removeMeals(meals[i]);
+            Meal addMeal = canteen.randomMeal();
+            if(Arrays.asList(meals).contains(addMeal)){
+                i--;
+            } else {
+                meals[i] = addMeal;
+                canteen.removeMeals(meals[i]);
+            }
         }
 
-        Meal[] mealToPraise = new Meal[3];
-        for(int i = 0; i < mealToPraise.length; i++){
-            mealToPraise[i] = meals[(int) Math.round(Math.random() * (meals.length - 1))];
+        Meal[] mealsToPraise = new Meal[3];
+        for(int i = 0; i < mealsToPraise.length; i++){
+            int random = (int) Math.round(Math.random() * (meals.length - 1));
+            if(Arrays.asList(mealsToPraise).contains(meals[random])){
+                i--;
+            } else {
+                mealsToPraise[i] = meals[random];
+            }
         }
 
         they.consume(meals);
-        traveler1.praise(mealToPraise);
+
+        traveler1.praise(mealsToPraise);
+
+        traveler1.seem(Status.SPECIAL_TASTY, mealsToPraise);
+
+        System.out.println();
 
         hotel.takeArrive(they.getEntities());
         hotel.famous(Status.CHEAPNESS);

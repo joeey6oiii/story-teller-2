@@ -3,6 +3,7 @@ package items;
 import interfaces.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 public class Cabinet extends Item implements IsOpenable {
@@ -14,9 +15,7 @@ public class Cabinet extends Item implements IsOpenable {
     }
 
     public void setShelves(Shelf... shelves) {
-        for(Shelf shelf : shelves){
-            this.shelves.add(shelf);
-        }
+        Collections.addAll(this.shelves, shelves);
     }
 
     public void addShelf(Shelf shelf) {

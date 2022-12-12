@@ -167,9 +167,20 @@ public class Hotel extends Place implements Revisorable, FamousAble, TakeArriveA
             }
         }
         temp2 = temp2 / hotels.length;
-        temp1 = temp2 / temp1;
-        System.out.println(tempString2 + " в " + hotel.getName() + " в среднем в " + temp1 +
-                " раз дешевле, чем в " + tempString);
+        if(temp2 > temp1){
+            temp1 = temp2 / temp1;
+            System.out.println(tempString2 + " в " + hotel.getName() + " в среднем в " + temp1 +
+                    " раз дешевле, чем в " + tempString);
+        }
+        else if(temp1 > temp2){
+            temp2 = temp1 / temp2;
+            System.out.println(tempString2 + " в " + hotel.getName() + " в среднем в " + temp2 +
+                    " раз дороже, чем в " + tempString);
+        }
+        else{
+            System.out.println(tempString2 + " в " + hotel.getName()
+                    + " в среднем стоят так же, как и в " + tempString);
+        }
     }
 
     @Override

@@ -1,11 +1,13 @@
 package places;
 
+import interfaces.*;
 import items.*;
 
 import java.util.*;
 
-public class Canteen extends Place{
+public class Canteen extends Place implements ItemsCheckable {
     ArrayList<Meal> meals = new ArrayList<>();
+    ArrayList<Item> items = new ArrayList<>();
 
     public Canteen(String name){
         super(name);
@@ -29,6 +31,15 @@ public class Canteen extends Place{
 
     public Meal randomMeal(){
         return meals.get(new Random().nextInt(meals.size()));
+    }
+
+    public void getItems(){
+        String temp = "";
+        for(Item item : items){
+            temp += item.getName() + ", ";
+        }
+        temp = temp.substring(0, temp.length() - 2);
+        System.out.println("В " + this.getName() + " есть " + temp);
     }
 
     @Override
