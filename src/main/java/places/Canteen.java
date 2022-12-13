@@ -1,13 +1,12 @@
 package places;
 
-import interfaces.*;
 import items.*;
 
 import java.util.*;
 
-public class Canteen extends Place implements ItemsCheckable {
-    ArrayList<Meal> meals = new ArrayList<>();
-    ArrayList<Item> items = new ArrayList<>();
+public class Canteen extends Place {
+    private ArrayList<Meal> meals = new ArrayList<>();
+    private HashMap<Integer, Item> items = new HashMap<>();
 
     public Canteen(String name){
         super(name);
@@ -34,34 +33,24 @@ public class Canteen extends Place implements ItemsCheckable {
     }
 
     public void setItems(Item ... items){
-        this.items.addAll(Arrays.asList(items));
+        for (int i = 0; i < items.length; i++){
+            this.items.put(i, items[i]);
+        }
     }
 
     public void addItems(Item ... items){
-        Collections.addAll(this.items, items);
-    }
-
-    public void removeItems(Item ... items){
-        this.items.removeAll(Arrays.asList(items));
-    }
-
-    public void getItems(){
-        StringBuilder temp = new StringBuilder();
-        for(Item item : items){
-            temp.append(item.getName()).append(", ");
+        for (Item item : items) {
+            this.items.put(this.items.size(), item);
         }
-        temp = new StringBuilder(temp.substring(0, temp.length() - 2));
-        System.out.println("В " + this.getName() + " есть " + temp);
     }
 
-    public Item getChair(int index){
-        ArrayList<Chair> chairs = new ArrayList<>();
-        for(Item item : items){
-            if(item instanceof Chair){
-                chairs.add((Chair) item);
-            }
-        }
-        return chairs.get(index);
+    public void removeItem(int index, Item item){
+        items.remove(index, item);
+    }
+
+
+    public Item getItemUsingIndex(int index){
+        return items.get(index);
     }
 
     @Override

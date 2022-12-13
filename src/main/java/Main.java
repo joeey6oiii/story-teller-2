@@ -1,7 +1,7 @@
 import entities.*;
 import enums.*;
 import events.*;
-import interfaces.IsSitable;
+import interfaces.*;
 import items.*;
 import items.forItems.*;
 import places.*;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Human traveler1 = new Neznayka("Незнайка");
         Human traveler2 = new Kozlik("Козлик");
         They they = new They(traveler1, traveler2);
@@ -112,8 +112,8 @@ public class Main {
 
         Time.passMinutes(5);
 
-        traveler1.sit((IsSitable) canteen.getChair(0));
-        traveler2.sit((IsSitable) canteen.getChair(1));
+        traveler1.sit((IsSitable) canteen.getItemUsingIndex(0));
+        traveler2.sit((IsSitable) canteen.getItemUsingIndex(1));
 
         they.consume(meals);
 
@@ -134,8 +134,8 @@ public class Main {
 
         traveler1.seem(Status.SPECIAL_TASTY, mealsToPraise);
 
-        traveler1.unSit((IsSitable) canteen.getChair(0));
-        traveler2.unSit((IsSitable) canteen.getChair(1));
+        traveler1.unSit((IsSitable) canteen.getItemUsingIndex(0));
+        traveler2.unSit((IsSitable) canteen.getItemUsingIndex(1));
 
         System.out.println();
 
@@ -160,7 +160,7 @@ public class Main {
 
         they.open(cabinet);
         traveler1.put(hatTraveler1, cabinet.getShelf(0));
-        traveler2.put(hatTraveler2, cabinet.getShelf(0));
+        traveler2.put(hatTraveler2, cabinet.getShelf(1));
         they.wantRest();
 
         bell.ring(TimeExpression.RIGHT_NOW);

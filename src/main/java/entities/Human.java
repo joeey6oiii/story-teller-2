@@ -48,7 +48,7 @@ public class Human extends Entity implements PutAble, PraiseAble,
             isSitable.setBusy(false);
         }
         else{
-            System.out.println(this.getName() + " не смог покинуть " + isSitable.getName() + ", так как он не занят");
+            System.out.println(this.getName() + " не находится на " + isSitable.getName());
         }
     }
 
@@ -67,7 +67,7 @@ public class Human extends Entity implements PutAble, PraiseAble,
             temp.append(seemable.getName()).append(", ");
         }
         temp = new StringBuilder(temp.substring(0, temp.length() - 2));
-        System.out.println(this.getName() + " кажется: " + temp + " " + status.getName());
+        System.out.println(this.getName() + " кажется " + status.getName() + ": " + temp);
     }
 
     public void quack(){

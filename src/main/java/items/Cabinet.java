@@ -2,12 +2,11 @@ package items;
 
 import interfaces.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Cabinet extends Item implements IsOpenable {
-    private ArrayList<Shelf> shelves = new ArrayList<>();
+    private HashMap<Integer, Shelf> shelves = new HashMap<>();
     private boolean isOpen = false;
 
     public Cabinet(String name) {
@@ -15,11 +14,15 @@ public class Cabinet extends Item implements IsOpenable {
     }
 
     public void setShelves(Shelf... shelves) {
-        Collections.addAll(this.shelves, shelves);
+        for (int i = 0; i < shelves.length; i++){
+            this.shelves.put(i, shelves[i]);
+        }
     }
 
-    public void addShelf(Shelf shelf) {
-        this.shelves.add(shelf);
+    public void addShelves(Shelf ... shelves){
+        for (Shelf shelf : shelves) {
+            this.shelves.put(this.shelves.size(), shelf);
+        }
     }
 
     public Shelf getShelf(int index){
