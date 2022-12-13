@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Human traveler1 = new Neznayka("Незнайка");
         Kozlik traveler2 = new Kozlik("Козлик");
         Cat cat = new Cat("Котенок");
@@ -114,20 +114,6 @@ public class Main {
             }
         }
 
-        Thread thread = new Thread(new Runnable() {
-            public void run() {
-                for(int i = 1; i <= 4; i ++){
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("Прошло " + i + " минуты");
-                }
-            }
-        });
-
-        thread.start();
         Time.passMinutes(5);
 
         traveler1.sit((IsSitable) canteen.getItemUsingIndex(0));
@@ -156,8 +142,6 @@ public class Main {
 
         traveler1.unSit((IsSitable) canteen.getItemUsingIndex(0));
         traveler2.unSit((IsSitable) canteen.getItemUsingIndex(1));
-
-        Time.skip();
 
         hotel.takeArrive(they.getEntities());
         hotel.famous(Status.CHEAPNESS);
