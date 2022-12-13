@@ -10,9 +10,10 @@ import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Human traveler1 = new Neznayka("Незнайка");
-        Human traveler2 = new Kozlik("Козлик");
+        Kozlik traveler2 = new Kozlik("Козлик");
+        Cat cat = new Cat("Котенок");
         They they = new They(traveler1, traveler2);
         They humans = new They();
         for(int i = 0; i < Math.round((Math.random() * 5)); i++){
@@ -27,6 +28,9 @@ public class Main {
                 Math.round((Math.random() * 35 + 20))), hatTraveler1);
         traveler2.setItems(new Money("Сантик",
                  Math.round((Math.random() * 35 + 10))), hatTraveler2);
+        traveler2.setStatuses(Status.COLD, Status.HUNGRY);
+
+        cat.setStatuses(Status.COLD, Status.HUNGRY);
 
         Canteen canteen = new Canteen("Столовая");
         canteen.setItems(new Chair("Стульчик"), new Chair("Стул"), new Table("Столик"));
@@ -110,6 +114,20 @@ public class Main {
             }
         }
 
+        Thread thread = new Thread(new Runnable() {
+            public void run() {
+                for(int i = 1; i <= 4; i ++){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("Прошло " + i + " минуты");
+                }
+            }
+        });
+
+        thread.start();
         Time.passMinutes(5);
 
         traveler1.sit((IsSitable) canteen.getItemUsingIndex(0));
@@ -128,7 +146,9 @@ public class Main {
             }
         }
 
-        // TODO: comparison kozlik to cat
+        traveler2.similar(cat);
+        cat.consume(new SourCream("Сметана"));
+        traveler2.removeStatuses(Status.COLD, Status.HUNGRY);
 
         traveler1.praise(mealsToPraise);
 
@@ -137,7 +157,7 @@ public class Main {
         traveler1.unSit((IsSitable) canteen.getItemUsingIndex(0));
         traveler2.unSit((IsSitable) canteen.getItemUsingIndex(1));
 
-        System.out.println();
+        Time.skip();
 
         hotel.takeArrive(they.getEntities());
         hotel.famous(Status.CHEAPNESS);

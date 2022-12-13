@@ -1,5 +1,6 @@
 package entities;
 
+import enums.*;
 import items.*;
 import places.*;
 
@@ -12,6 +13,7 @@ public abstract class Entity {
     private String name;
     private Place location;
     private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Status> statuses = new ArrayList<>();
 
     public Entity(){}
 
@@ -62,12 +64,31 @@ public abstract class Entity {
         }
     }
 
+    public void setStatuses(Status... statuses){
+        Collections.addAll(this.statuses, statuses);
+    }
+
+    public void addStatuses(Status... statuses){
+        Collections.addAll(this.statuses, statuses);
+    }
+
+    public Status[] getStatuses(){
+        return this.statuses.toArray(new Status[this.statuses.size()]);
+    }
+
+    public void removeStatuses(Status... statuses){
+        for(Status st : statuses){
+            this.statuses.remove(st);
+        }
+    }
+
     @Override
     public String toString() {
-        return "entities.Entity{" +
+        return "Entity{" +
                 "name='" + name + '\'' +
                 ", location=" + location +
                 ", items=" + items +
+                ", statuses=" + statuses +
                 '}';
     }
 
@@ -76,12 +97,11 @@ public abstract class Entity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Entity entity = (Entity) o;
-        return Objects.equals(name, entity.name) &&
-                Objects.equals(location, entity.location) && Objects.equals(items, entity.items);
+        return Objects.equals(name, entity.name) && Objects.equals(location, entity.location) && Objects.equals(items, entity.items) && Objects.equals(statuses, entity.statuses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, location, items);
+        return Objects.hash(name, location, items, statuses);
     }
 }
