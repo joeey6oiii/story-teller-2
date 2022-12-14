@@ -1,6 +1,6 @@
 package items.forItems;
 
-import enums.Colors;
+import enums.*;
 import interfaces.*;
 
 import java.util.Objects;

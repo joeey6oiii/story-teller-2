@@ -44,13 +44,13 @@ public class Canteen extends Place {
         }
     }
 
-    public void removeItem(int index, Item item){
-        items.remove(index, item);
+    public void removeItem(int hash, Item item){
+        items.remove(hash, item);
     }
 
 
-    public Item getItemUsingIndex(int index){
-        return items.get(index);
+    public Item getItemUsingHashKey(int key){
+        return items.get(key);
     }
 
     @Override

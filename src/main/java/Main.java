@@ -116,8 +116,8 @@ public class Main {
 
         Time.passMinutes(5);
 
-        traveler1.sit((IsSitable) canteen.getItemUsingIndex(0));
-        traveler2.sit((IsSitable) canteen.getItemUsingIndex(1));
+        traveler1.sit((IsSitable) canteen.getItemUsingHashKey(0));
+        traveler2.sit((IsSitable) canteen.getItemUsingHashKey(1));
 
         they.consume(meals);
 
@@ -140,8 +140,8 @@ public class Main {
 
         traveler1.seem(Status.SPECIAL_TASTY, mealsToPraise);
 
-        traveler1.unSit((IsSitable) canteen.getItemUsingIndex(0));
-        traveler2.unSit((IsSitable) canteen.getItemUsingIndex(1));
+        traveler1.unSit((IsSitable) canteen.getItemUsingHashKey(0));
+        traveler2.unSit((IsSitable) canteen.getItemUsingHashKey(1));
 
         hotel.takeArrive(they.getEntities());
         hotel.famous(Status.CHEAPNESS);

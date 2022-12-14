@@ -1,12 +1,15 @@
 package entities;
 
 import enums.*;
+import exceptions.unchecked.IncorrectObject;
 import interfaces.*;
 import items.*;
 import places.*;
 
-public class Human extends Entity implements PutAble, PraiseAble,
-        SeemAble, SmackAble, SquintAble, QuackAble, SitAble, UnSitAble{
+import java.util.Arrays;
+
+public class Human extends Entity implements PutAble, PraiseAble, SeemAble,
+        SmackAble, SquintAble, QuackAble, SitAble, UnSitAble, Similarable{
     private final Lips lips = new Lips("Губы");
 
     public Human(){
@@ -80,6 +83,36 @@ public class Human extends Entity implements PutAble, PraiseAble,
 
     public void smack(IsSmackable isSmackable){
         System.out.println(this.getName() + " чмокает " + isSmackable.getName());
+    }
+
+    public void similar(Object object) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if(!(object instanceof Entity)) {
+            throw new IncorrectObject("Невозможно сравнить объекты разных типов: "
+                    + this.getClass().getName() + " и " + object.getClass().getName());
+        }
+        else {
+            if (this.getName().equals(((Entity) object).getName())) {
+                stringBuilder.append(((Entity) object).getName()).append(", ");
+            }
+            if(this.getLocation().equals(((Entity) object).getLocation())){
+                stringBuilder.append(((Entity) object).getLocation().getName()).append(", ");
+            }
+            if(Arrays.equals(this.getItems(), ((Entity) object).getItems())){
+                stringBuilder.append(Arrays.toString(((Entity) object).getItems())).append(", ");
+            }
+            if(Arrays.equals(this.getStatuses(), ((Entity) object).getStatuses())){
+                stringBuilder.append(Arrays.toString(((Entity) object).getStatuses())).append(", ");
+            }
+            if(stringBuilder.length() > 0){
+                stringBuilder = new StringBuilder(stringBuilder.substring(0, stringBuilder.length() - 2));
+                System.out.println(this.getName() +  " похож на " +
+                        ((Entity) object).getName() + " по следующим параметрам: " + stringBuilder);
+            }
+            else {
+                System.out.println(this.getName() + " не похож на " + ((Entity) object).getName());
+            }
+        }
     }
 
     private class Lips implements IsSmackable{
