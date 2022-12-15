@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IllegalAccessException {
         Human traveler1 = new Neznayka("Незнайка");
         Kozlik traveler2 = new Kozlik("Козлик");
         Cat cat = new Cat("Котенок");

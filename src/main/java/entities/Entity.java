@@ -1,6 +1,8 @@
 package entities;
 
 import enums.*;
+import exceptions.unchecked.IncorrectObject;
+import interfaces.*;
 import items.*;
 import places.*;
 
@@ -9,11 +11,18 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Objects;
 
-public abstract class Entity {
+public abstract class Entity implements Similarable {
     private String name;
     private Place location;
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Status> statuses = new ArrayList<>();
+
+    {
+        name = "Default Entity";
+        location = new DefaultLocation("Default Location");
+        items = new ArrayList<>();
+        statuses = new ArrayList<>();
+    }
 
     public Entity(){}
 
@@ -79,6 +88,36 @@ public abstract class Entity {
     public void removeStatuses(Status... statuses){
         for(Status st : statuses){
             this.statuses.remove(st);
+        }
+    }
+
+    public void similar(Object object) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if(!(object instanceof Entity)) {
+            throw new IncorrectObject("Невозможно сравнить объекты разных типов: "
+                    + this.getClass().getName() + " и " + object.getClass().getName());
+        }
+        else {
+            if (this.getName().equals(((Entity) object).getName())) {
+                stringBuilder.append(((Entity) object).getName()).append(", ");
+            }
+            if(this.getLocation().equals(((Entity) object).getLocation())){
+                stringBuilder.append(((Entity) object).getLocation().getName()).append(", ");
+            }
+            if(Arrays.equals(this.getItems(), ((Entity) object).getItems())){
+                stringBuilder.append(Arrays.toString(((Entity) object).getItems())).append(", ");
+            }
+            if(Arrays.equals(this.getStatuses(), ((Entity) object).getStatuses())){
+                stringBuilder.append(Arrays.toString(((Entity) object).getStatuses())).append(", ");
+            }
+            if(stringBuilder.length() > 0){
+                stringBuilder = new StringBuilder(stringBuilder.substring(0, stringBuilder.length() - 2));
+                System.out.println(this.getName() +  " похож на " +
+                        ((Entity) object).getName() + " по следующим параметрам: " + stringBuilder);
+            }
+            else {
+                System.out.println(this.getName() + " не похож на " + ((Entity) object).getName());
+            }
         }
     }
 

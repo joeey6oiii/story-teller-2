@@ -8,7 +8,7 @@ public abstract class Place implements IsFindable {
     private String name;
 
     {
-        name = "Нуль Место";
+        name = "Место";
     }
 
     public Place(){}
