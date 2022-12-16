@@ -4,9 +4,13 @@ import interfaces.*;
 
 import java.util.Objects;
 
-public abstract class Item implements IsFindable {
+public abstract class Item implements IsFindable, IsPutable {
     private String name;
     private long cost;
+
+    {
+        name = "Предмет";
+    }
 
     public Item(){}
 

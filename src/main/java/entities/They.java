@@ -34,7 +34,7 @@ public class They implements TryAble, FindAble, GoAble, OpenAble, ReadAble,
         int keys = 0;
         if(canBeFind.getClass().equals(Room.class)){
             for(Entity entity : people){
-                for(int i = 0; i < entity.getItems().length; i++){
+                for(int i = 0; i < entity.getItems().size(); i++){
                     if(entity.getItemUsingIndex(i).getClass().equals(Key.class)) {
                         keys += 1;
                     }
@@ -79,15 +79,15 @@ public class They implements TryAble, FindAble, GoAble, OpenAble, ReadAble,
         long totalMoney = 0;
         long temp2;
         for(Entity entity : people){
-            for(int i = 0; i < entity.getItems().length; i++){
+            for(int i = 0; i < entity.getItems().size(); i++){
                 if(entity.getItemUsingIndex(i).getClass().equals(Money.class)){
                     totalMoneyList.add((Money) entity.getItemUsingIndex(i));
                     entity.removeItem(entity.getItemUsingIndex(i));
                 }
             }
         }
-        for(int i = 0; i < totalMoneyList.size(); i++){
-            totalMoney += totalMoneyList.get(i).getAmount();
+        for (Money money : totalMoneyList) {
+            totalMoney += money.getAmount();
         }
         temp = totalMoneyList.get(0).getName();
         if(totalMoney < item.getCost()){
@@ -132,23 +132,23 @@ public class They implements TryAble, FindAble, GoAble, OpenAble, ReadAble,
 
     public void tryAccess(Room room){
         ArrayList<Key> keys = new ArrayList<>();
-        Place entplace = null;
-        String temp0 = "";
+        Place entityLocation = new DefaultLocation("Default Location");
+        StringBuilder temp0 = new StringBuilder();
         boolean access = false;
         for(Entity entity : people) {
-            entplace = entity.getLocation();
-            for (int i = 0; i < entity.getItems().length; i++) {
+            entityLocation = entity.getLocation();
+            for (int i = 0; i < entity.getItems().size(); i++) {
                 if (entity.getItemUsingIndex(i).getClass().equals(Key.class)) {
                     keys.add((Key) entity.getItemUsingIndex(i));
-                    temp0 += entity.getName();
+                    temp0.append(entity.getName());
                 }
             }
         }
-        String temp = "";
-        for(int i = 0; i < keys.size(); i++){
-            if(keys.get(i).getId() == room.getId() && room.getRoomPlace() == entplace){
+        StringBuilder temp = new StringBuilder();
+        for (Key key : keys) {
+            if (key.getId() == room.getId() && room.getRoomPlace() == entityLocation) {
                 access = true;
-                temp += keys.get(i);
+                temp.append(key);
             }
         }
         if(access){
@@ -185,11 +185,11 @@ public class They implements TryAble, FindAble, GoAble, OpenAble, ReadAble,
     }
 
     public void consume(IsConsumable... consumables){
-        String temp = "";
+        StringBuilder temp = new StringBuilder();
         for(IsConsumable food : consumables){
-            temp += food.getName() + ", ";
+            temp.append(food.getName()).append(", ");
         }
-        temp = temp.substring(0, temp.length() - 2);
+        temp = new StringBuilder(temp.substring(0, temp.length() - 2));
         System.out.println(this.getNames() + " используют " + temp);
     }
 
@@ -200,13 +200,13 @@ public class They implements TryAble, FindAble, GoAble, OpenAble, ReadAble,
             case 2: return people.get(0).getName() + " и " +
                     people.get(1).getName();
             default:
-                String temp = "";
+                StringBuilder temp = new StringBuilder();
                 for(int i = 0; i < people.size() - 1; i++){
-                    temp += people.get(i).getName() + ", ";
+                    temp.append(people.get(i).getName()).append(", ");
                 }
-                temp = temp.substring(0, temp.length() - 2);
-                temp += " и " + people.get(people.size() - 1).getName();
-                return temp;
+                temp = new StringBuilder(temp.substring(0, temp.length() - 2));
+                temp.append(" и ").append(people.get(people.size() - 1).getName());
+                return temp.toString();
         }
     }
 

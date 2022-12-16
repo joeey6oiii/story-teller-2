@@ -1,8 +1,6 @@
 package items;
 
-import interfaces.*;
-
-public class Hat extends Item implements IsPutable {
+public class Hat extends Item {
     public Hat(String name){
         super(name);
     }

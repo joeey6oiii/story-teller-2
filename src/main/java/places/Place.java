@@ -27,7 +27,7 @@ public abstract class Place implements IsFindable {
 
     @Override
     public String toString(){
-        return getClass().getName() + "[" + "name=" + this.name + "]";
+        return getClass().getName() + "{" + "name=" + this.name + "}";
     }
 
     @Override

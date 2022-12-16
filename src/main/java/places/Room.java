@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 public class Room extends Place implements ItemsCheckable, ReplaceItemsAble {
-    private long RoomCost = 0;
+    private long roomCost;
     private int id;
     private Place location;
     private ArrayList<Item> items = new ArrayList<>();
@@ -27,11 +27,11 @@ public class Room extends Place implements ItemsCheckable, ReplaceItemsAble {
     }
 
     public long getRoomCost(){
-        return RoomCost;
+        return roomCost;
     }
 
     public void setRoomCost(long RoomCost){
-        this.RoomCost = RoomCost;
+        this.roomCost = RoomCost;
     }
 
     public int getId() {
@@ -90,7 +90,7 @@ public class Room extends Place implements ItemsCheckable, ReplaceItemsAble {
     @Override
     public String toString() {
         return "Room{" +
-                "RoomCost=" + RoomCost +
+                "RoomCost=" + roomCost +
                 ", id=" + id +
                 ", location=" + location +
                 ", items=" + items +
@@ -103,13 +103,13 @@ public class Room extends Place implements ItemsCheckable, ReplaceItemsAble {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Room room = (Room) o;
-        return RoomCost == room.RoomCost && id == room.id
+        return roomCost == room.roomCost && id == room.id
                 && Objects.equals(location, room.location)
                 && Objects.equals(items, room.items);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), RoomCost, id, location, items);
+        return Objects.hash(super.hashCode(), roomCost, id, location, items);
     }
 }

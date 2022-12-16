@@ -16,8 +16,8 @@ public class Canteen extends Place {
         this.meals.addAll(Arrays.asList(meals));
     }
 
-    public Meal[] getMeals(){
-        return meals.toArray(new Meal[meals.size()]);
+    public ArrayList<Meal> getMeals(){
+        return meals;
     }
 
     public void addMeals(Meal ... meal){

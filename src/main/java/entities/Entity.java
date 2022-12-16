@@ -1,7 +1,7 @@
 package entities;
 
 import enums.*;
-import exceptions.unchecked.IncorrectObject;
+import exceptions.unchecked.IncorrectObjectException;
 import interfaces.*;
 import items.*;
 import places.*;
@@ -11,11 +11,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Objects;
 
-public abstract class Entity implements Similarable {
+public abstract class Entity implements Similarable, ConsumeAble {
     private String name;
     private Place location;
-    private ArrayList<Item> items = new ArrayList<>();
-    private ArrayList<Status> statuses = new ArrayList<>();
+    private ArrayList<Item> items;
+    private ArrayList<Status> statuses;
 
     {
         name = "Default Entity";
@@ -59,8 +59,8 @@ public abstract class Entity implements Similarable {
         return items.get(index);
     }
 
-    public Item[] getItems(){
-        return this.items.toArray(new Item[this.items.size()]);
+    public ArrayList<Item> getItems(){
+        return items;
     }
 
     public void addItem(Item... item) {
@@ -81,8 +81,8 @@ public abstract class Entity implements Similarable {
         Collections.addAll(this.statuses, statuses);
     }
 
-    public Status[] getStatuses(){
-        return this.statuses.toArray(new Status[this.statuses.size()]);
+    public ArrayList<Status> getStatuses(){
+        return statuses;
     }
 
     public void removeStatuses(Status... statuses){
@@ -94,7 +94,7 @@ public abstract class Entity implements Similarable {
     public void similar(Object object) {
         StringBuilder stringBuilder = new StringBuilder();
         if(!(object instanceof Entity)) {
-            throw new IncorrectObject("Невозможно сравнить объекты разных типов: "
+            throw new IncorrectObjectException("Невозможно сравнить объекты разных типов: "
                     + this.getClass().getName() + " и " + object.getClass().getName());
         }
         else {
@@ -104,11 +104,11 @@ public abstract class Entity implements Similarable {
             if(this.getLocation().equals(((Entity) object).getLocation())){
                 stringBuilder.append(((Entity) object).getLocation().getName()).append(", ");
             }
-            if(Arrays.equals(this.getItems(), ((Entity) object).getItems())){
-                stringBuilder.append(Arrays.toString(((Entity) object).getItems())).append(", ");
+            if(this.getItems().equals(((Entity) object).getItems())){
+                stringBuilder.append(((Entity) object).getItems()).append(", ");
             }
-            if(Arrays.equals(this.getStatuses(), ((Entity) object).getStatuses())){
-                stringBuilder.append(Arrays.toString(((Entity) object).getStatuses())).append(", ");
+            if(this.getStatuses().equals(((Entity) object).getStatuses())){
+                stringBuilder.append(((Entity) object).getStatuses()).append(", ");
             }
             if(stringBuilder.length() > 0){
                 stringBuilder = new StringBuilder(stringBuilder.substring(0, stringBuilder.length() - 2));
@@ -118,6 +118,20 @@ public abstract class Entity implements Similarable {
             else {
                 System.out.println(this.getName() + " не похож на " + ((Entity) object).getName());
             }
+        }
+    }
+
+    public void consume(IsConsumable... consumables) {
+        StringBuilder sb = new StringBuilder();
+        for(IsConsumable consumable : consumables){
+            sb.append(consumable.getName()).append(", ");
+        }
+        if(sb.length() > 0){
+            sb = new StringBuilder(sb.substring(0, sb.length() - 2));
+            System.out.println(getName() + " использовал " + sb);
+        }
+        else{
+            System.out.println(getName() + " ничего не использовал");
         }
     }
 
@@ -136,7 +150,8 @@ public abstract class Entity implements Similarable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Entity entity = (Entity) o;
-        return Objects.equals(name, entity.name) && Objects.equals(location, entity.location) && Objects.equals(items, entity.items) && Objects.equals(statuses, entity.statuses);
+        return Objects.equals(name, entity.name) && Objects.equals(location, entity.location)
+                && Objects.equals(items, entity.items) && Objects.equals(statuses, entity.statuses);
     }
 
     @Override

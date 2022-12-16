@@ -86,7 +86,7 @@ public class Hotel extends Place implements Revisorable, FamousAble, TakeArriveA
         return signBoard.get(index);
     }
 
-    public void takeArrive(Entity... entities) {
+    public void takeArrive(Entity ... entities) {
         StringBuilder temp = new StringBuilder();
         if(entities.length == 1) {
             temp = new StringBuilder(entities[0].getName());

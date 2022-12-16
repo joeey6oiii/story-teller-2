@@ -1,12 +1,12 @@
 package entities;
 
 import enums.*;
-import exceptions.unchecked.IncorrectObject;
+import exceptions.checked.ItemNotFoundException;
 import interfaces.*;
 import items.*;
 import places.*;
 
-import java.util.Arrays;
+import java.util.Objects;
 
 public class Human extends Entity implements PutAble, PraiseAble,
         SeemAble, SmackAble, SquintAble, QuackAble, SitAble, UnSitAble{
@@ -29,10 +29,25 @@ public class Human extends Entity implements PutAble, PraiseAble,
     }
 
     public void put(IsPutable canBePut, TakePutAble canTakePut) {
-        System.out.println(this.getName() + " положил " + canBePut.getName()
-                + " на " + canTakePut.getName());
-        canTakePut.addItems((Item) canBePut);
-        this.removeItem((Item) canBePut);
+        boolean contain = true;
+        try{
+            if(!this.getItems().contains((Item) canBePut)){
+                contain = false;
+                throw new ItemNotFoundException("Item is not in inventory: " + canBePut.getName());
+            }
+        } catch (ItemNotFoundException e) {
+            System.out.println(e.getMessage());;
+        }
+        if(contain){
+            System.out.println(this.getName() + " положил " + canBePut.getName()
+                    + " на " + canTakePut.getName());
+            canTakePut.addItems((Item) canBePut);
+            this.removeItem((Item) canBePut);
+        }
+        else{
+            System.out.println(this.getName() + " не удалось положить " + canBePut.getName()
+                    + " на " + canTakePut.getName());
+        }
     }
 
     public void sit(IsSitable isSitable){
@@ -99,5 +114,26 @@ public class Human extends Entity implements PutAble, PraiseAble,
         public void setName(String name){
             this.name = name;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Human{" +
+                "lips=" + lips +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Human human = (Human) o;
+        return Objects.equals(lips, human.lips);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), lips);
     }
 }
