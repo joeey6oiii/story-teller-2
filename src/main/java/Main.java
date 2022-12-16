@@ -143,7 +143,7 @@ public class Main {
         traveler1.unSit((IsSitable) canteen.getItemUsingHashKey(0));
         traveler2.unSit((IsSitable) canteen.getItemUsingHashKey(1));
 
-        hotel.takeArrive(they.getEntities());
+        hotel.takeArrive(they.getEntities().toArray(new Entity[0]));
         hotel.famous(Status.CHEAPNESS);
 
         hotel.getHotelRoomsInfo();

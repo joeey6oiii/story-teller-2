@@ -26,8 +26,8 @@ public class They implements TryAble, FindAble, GoAble, OpenAble, ReadAble,
         }
     }
 
-    public Entity[] getEntities(){
-        return people.toArray(new Entity[people.size()]);
+    public ArrayList<Entity> getEntities(){
+        return people;
     }
 
     public void find(IsFindable canBeFind){
