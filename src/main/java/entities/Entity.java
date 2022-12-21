@@ -1,7 +1,7 @@
 package entities;
 
 import enums.*;
-import exceptions.unchecked.IncorrectObjectException;
+//import exceptions.unchecked.IncorrectObjectException;
 import interfaces.*;
 import items.*;
 import places.*;
@@ -91,35 +91,38 @@ public abstract class Entity implements Similarable, ConsumeAble {
         }
     }
 
-    public void similar(Object object) {
-        StringBuilder stringBuilder = new StringBuilder();
-        if(!(object instanceof Entity)) {
-            throw new IncorrectObjectException("Невозможно сравнить объекты разных типов: "
-                    + this.getClass().getName() + " и " + object.getClass().getName());
-        }
-        else {
-            if (this.getName().equals(((Entity) object).getName())) {
-                stringBuilder.append(((Entity) object).getName()).append(", ");
-            }
-            if(this.getLocation().equals(((Entity) object).getLocation())){
-                stringBuilder.append(((Entity) object).getLocation().getName()).append(", ");
-            }
-            if(this.getItems().equals(((Entity) object).getItems())){
-                stringBuilder.append(((Entity) object).getItems()).append(", ");
-            }
-            if(this.getStatuses().equals(((Entity) object).getStatuses())){
-                stringBuilder.append(((Entity) object).getStatuses()).append(", ");
-            }
-            if(stringBuilder.length() > 0){
-                stringBuilder = new StringBuilder(stringBuilder.substring(0, stringBuilder.length() - 2));
-                System.out.println(this.getName() +  " похож на " +
-                        ((Entity) object).getName() + " по следующим параметрам: " + stringBuilder);
-            }
-            else {
-                System.out.println(this.getName() + " не похож на " + ((Entity) object).getName());
-            }
-        }
-    }
+/*    --> deprecated method implementation
+
+      public void similar(Object object) {
+          StringBuilder stringBuilder = new StringBuilder();
+          if(!(object instanceof Entity)) {
+              throw new IncorrectObjectException("Невозможно сравнить объекты разных типов: "
+                      + this.getClass().getName() + " и " + object.getClass().getName());
+          }
+          else {
+              if (this.getName().equals(((Entity) object).getName())) {
+                  stringBuilder.append(((Entity) object).getName()).append(", ");
+              }
+              if(this.getLocation().equals(((Entity) object).getLocation())){
+                  stringBuilder.append(((Entity) object).getLocation().getName()).append(", ");
+              }
+              if(this.getItems().equals(((Entity) object).getItems())){
+                  stringBuilder.append(((Entity) object).getItems()).append(", ");
+              }
+              if(this.getStatuses().equals(((Entity) object).getStatuses())){
+                  stringBuilder.append(((Entity) object).getStatuses()).append(", ");
+              }
+              if(stringBuilder.length() > 0){
+                  stringBuilder = new StringBuilder(stringBuilder.substring(0, stringBuilder.length() - 2));
+                  System.out.println(this.getName() +  " похож на " +
+                          ((Entity) object).getName() + " по следующим параметрам: " + stringBuilder);
+              }
+              else {
+                  System.out.println(this.getName() + " не похож на " + ((Entity) object).getName());
+              }
+          }
+      }
+ */
 
     public void consume(IsConsumable... consumables) {
         StringBuilder sb = new StringBuilder();
