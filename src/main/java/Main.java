@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Human traveler1 = new Neznayka("Незнайка");
         Kozlik traveler2 = new Kozlik("Козлик");
         Cat cat = new Cat("Котенок");
@@ -114,7 +114,12 @@ public class Main {
             }
         }
 
-        Time.passMinutes(5);
+        try{
+            Time.passMinutes(5);
+        }
+        catch (InterruptedException e){
+            e.printStackTrace();
+        }
 
         traveler1.sit((IsSitable) canteen.getItemUsingHashKey(0));
         traveler2.sit((IsSitable) canteen.getItemUsingHashKey(1));
@@ -163,8 +168,19 @@ public class Main {
         room.getItems();
 
         they.open(cabinet);
-        traveler1.put(hatTraveler1, cabinet.getShelf(0));
-        traveler2.put(hatTraveler2, cabinet.getShelf(1));
+
+        try{
+            traveler1.put(hatTraveler1, cabinet.getShelf(0));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        try{
+            traveler2.put(hatTraveler2, cabinet.getShelf(1));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         they.wantRest();
 
         bell.ring(TimeExpression.RIGHT_NOW);

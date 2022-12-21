@@ -28,26 +28,14 @@ public class Human extends Entity implements PutAble, PraiseAble,
         return lips;
     }
 
-    public void put(IsPutable canBePut, TakePutAble canTakePut) {
-        boolean contain = true;
-        try{
-            if(!this.getItems().contains((Item) canBePut)){
-                contain = false;
-                throw new ItemNotFoundException("Item is not in inventory: " + canBePut.getName());
-            }
-        } catch (ItemNotFoundException e) {
-            System.out.println(e.getMessage());;
+    public void put(IsPutable canBePut, TakePutAble canTakePut) throws ItemNotFoundException {
+        if(!this.getItems().contains((Item) canBePut)){
+            throw new ItemNotFoundException("Item is not in inventory: " + canBePut.getName());
         }
-        if(contain){
-            System.out.println(this.getName() + " положил " + canBePut.getName()
-                    + " на " + canTakePut.getName());
-            canTakePut.addItems((Item) canBePut);
-            this.removeItem((Item) canBePut);
-        }
-        else{
-            System.out.println(this.getName() + " не удалось положить " + canBePut.getName()
-                    + " на " + canTakePut.getName());
-        }
+        System.out.println(this.getName() + " положил " + canBePut.getName()
+                + " на " + canTakePut.getName());
+        canTakePut.addItems((Item) canBePut);
+        this.removeItem((Item) canBePut);
     }
 
     public void sit(IsSitable isSitable){
