@@ -5,7 +5,6 @@ import exceptions.unchecked.IncorrectObjectException;
 import java.lang.reflect.Field;
 
 public interface Similarable {
-//  public void similar(Object object) throws IncorrectObjectException; --> deprecated method implementation
     default void similar(Object object) throws IncorrectObjectException {
         Class<?> temp = this.getClass();
         Class<?> temp12 =this.getClass();
